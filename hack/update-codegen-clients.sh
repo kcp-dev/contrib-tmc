@@ -34,6 +34,11 @@ go install "${CODEGEN_PKG}"/cmd/client-gen
 "$GOPATH"/bin/applyconfiguration-gen \
   --input-dirs github.com/faroshq/tmc/apis/scheduling/v1alpha1 \
   --input-dirs github.com/faroshq/tmc/apis/workload/v1alpha1 \
+  --input-dirs github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1 \
+  --input-dirs github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1 \
+  --input-dirs github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1 \
+  --input-dirs github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1 \
+  --input-dirs k8s.io/apimachinery/pkg/apis/meta/v1,k8s.io/apimachinery/pkg/runtime,k8s.io/apimachinery/pkg/version,k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1 \
   --output-package github.com/faroshq/tmc/client/applyconfiguration \
   --go-header-file ./hack/../hack/boilerplate/boilerplate.generatego.txt \
   --output-base "${SCRIPT_ROOT}" \
@@ -45,80 +50,45 @@ go install "${CODEGEN_PKG}"/cmd/client-gen
   --input-base="" \
   --apply-configuration-package=github.com/faroshq/tmc/client/applyconfiguration \
   --clientset-name "versioned"  \
-  --output-package github.com/kcp-dev/faroshq/tmc/client/clientset \
+  --output-package github.com/faroshq/tmc/client/clientset \
   --go-header-file ./hack/../hack/boilerplate/boilerplate.generatego.txt \
   --output-base "${SCRIPT_ROOT}" \
   --trim-path-prefix github.com/faroshq/tmc
 
 bash "${CODEGEN_PKG}"/generate-groups.sh "deepcopy" \
-  github.com/kcp-dev/kcp/sdk/client github.com/kcp-dev/kcp/sdk/apis \
-  "core:v1alpha1 workload:v1alpha1 apiresource:v1alpha1 tenancy:v1alpha1 apis:v1alpha1 scheduling:v1alpha1 topology:v1alpha1" \
+  github.com/faroshq/tmc/client github.com/faroshq/tmc/apis \
+  "workload:v1alpha1 scheduling:v1alpha1" \
   --go-header-file "${SCRIPT_ROOT}"/hack/boilerplate/boilerplate.generatego.txt \
   --output-base "${SCRIPT_ROOT}" \
-  --trim-path-prefix github.com/kcp-dev/kcp
+  --trim-path-prefix github.com/faroshq/tmc
 
-pushd ./sdk/apis
+pushd ./apis
 ${CODE_GENERATOR} \
-  "client:outputPackagePath=github.com/kcp-dev/kcp/sdk/client,apiPackagePath=github.com/kcp-dev/kcp/sdk/apis,singleClusterClientPackagePath=github.com/kcp-dev/kcp/sdk/client/clientset/versioned,singleClusterApplyConfigurationsPackagePath=github.com/kcp-dev/kcp/sdk/client/applyconfiguration,headerFile=${BOILERPLATE_HEADER}" \
-  "lister:apiPackagePath=github.com/kcp-dev/kcp/sdk/apis,headerFile=${BOILERPLATE_HEADER}" \
-  "informer:outputPackagePath=github.com/kcp-dev/kcp/sdk/client,singleClusterClientPackagePath=github.com/kcp-dev/kcp/sdk/client/clientset/versioned,apiPackagePath=github.com/kcp-dev/kcp/sdk/apis,headerFile=${BOILERPLATE_HEADER}" \
+  "client:outputPackagePath=github.com/faroshq/tmc/client,apiPackagePath=github.com/faroshq/tmc/apis,singleClusterClientPackagePath=github.com/faroshq/tmc/client/clientset/versioned,singleClusterApplyConfigurationsPackagePath=github.com/faroshq/tmc/client/applyconfiguration,headerFile=${BOILERPLATE_HEADER}" \
+  "lister:apiPackagePath=github.com/faroshq/tmc/apis,headerFile=${BOILERPLATE_HEADER}" \
+  "informer:outputPackagePath=github.com/faroshq/tmc/client,singleClusterClientPackagePath=github.com/faroshq/tmc/client/clientset/versioned,apiPackagePath=github.com/faroshq/tmc/apis,headerFile=${BOILERPLATE_HEADER}" \
   "paths=./..." \
   "output:dir=./../client"
 popd
-
-"$GOPATH"/bin/applyconfiguration-gen \
-  --input-dirs github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/apis/wildwest/v1alpha1 \
-  --input-dirs k8s.io/apimachinery/pkg/apis/meta/v1 \
-  --output-package github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client/applyconfiguration \
-  --go-header-file "${SCRIPT_ROOT}"/hack/boilerplate/boilerplate.generatego.txt \
-  --output-base "${SCRIPT_ROOT}" \
-  --trim-path-prefix github.com/kcp-dev/kcp
-
-"$GOPATH"/bin/client-gen \
-  --input github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/apis/wildwest/v1alpha1 \
-  --input-base="" \
-  --apply-configuration-package=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client/applyconfiguration \
-  --clientset-name "versioned"  \
-  --output-package github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client/clientset \
-  --go-header-file ./hack/../hack/boilerplate/boilerplate.generatego.txt \
-  --output-base "${SCRIPT_ROOT}" \
-  --trim-path-prefix github.com/kcp-dev/kcp
 
 bash "${CODEGEN_PKG}"/generate-groups.sh "deepcopy" \
   github.com/kcp-dev/kcp/third_party/conditions/client github.com/kcp-dev/kcp/third_party/conditions/apis \
   "conditions:v1alpha1" \
   --go-header-file "${SCRIPT_ROOT}"/hack/boilerplate/boilerplate.generatego.txt \
   --output-base "${SCRIPT_ROOT}" \
-  --trim-path-prefix github.com/kcp-dev/kcp
-
-bash "${CODEGEN_PKG}"/generate-groups.sh "deepcopy" \
-  github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/apis \
-  "wildwest:v1alpha1" \
-  --go-header-file "${SCRIPT_ROOT}"/hack/boilerplate/boilerplate.generatego.txt \
-  --output-base "${SCRIPT_ROOT}" \
-  --trim-path-prefix github.com/kcp-dev/kcp
-
-pushd ./test/e2e/fixtures/wildwest/apis
-${CODE_GENERATOR} \
-  "client:outputPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client,apiPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/apis,singleClusterClientPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client/clientset/versioned,singleClusterApplyConfigurationsPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client/applyconfiguration,headerFile=${BOILERPLATE_HEADER}" \
-  "lister:apiPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/apis,headerFile=${BOILERPLATE_HEADER}" \
-  "informer:outputPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client,singleClusterClientPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/client/clientset/versioned,apiPackagePath=github.com/kcp-dev/kcp/test/e2e/fixtures/wildwest/apis,headerFile=${BOILERPLATE_HEADER}" \
-  "paths=./..." \
-  "output:dir=./../client"
-popd
+  --trim-path-prefix github.com/faroshq/tmc
 
 go install "${CODEGEN_PKG}"/cmd/openapi-gen
 
-"$GOPATH"/bin/openapi-gen  --input-dirs github.com/kcp-dev/kcp/sdk/apis/workload/v1alpha1 \
+"$GOPATH"/bin/openapi-gen  \
+--input-dirs github.com/faroshq/tmc/apis/workload/v1alpha1 \
+--input-dirs github.com/faroshq/tmc/apis/scheduling/v1alpha1 \
 --input-dirs github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1 \
 --input-dirs github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1 \
---input-dirs github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1 \
 --input-dirs github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1 \
---input-dirs github.com/kcp-dev/kcp/sdk/apis/scheduling/v1alpha1 \
---input-dirs github.com/kcp-dev/kcp/sdk/apis/topology/v1alpha1 \
 --input-dirs github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1 \
 --input-dirs k8s.io/apimachinery/pkg/apis/meta/v1,k8s.io/apimachinery/pkg/runtime,k8s.io/apimachinery/pkg/version \
---output-package github.com/kcp-dev/kcp/pkg/openapi -O zz_generated.openapi \
+--output-package github.com/faroshq/tmc/openapi -O zz_generated.openapi \
 --go-header-file ./hack/../hack/boilerplate/boilerplate.generatego.txt \
 --output-base "${SCRIPT_ROOT}" \
---trim-path-prefix github.com/kcp-dev/kcp
+--trim-path-prefix github.com/faroshq/tmc

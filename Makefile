@@ -38,12 +38,22 @@ GOLANGCI_LINT_VER := v1.50.1
 GOLANGCI_LINT_BIN := golangci-lint
 GOLANGCI_LINT := $(TOOLS_GOBIN_DIR)/$(GOLANGCI_LINT_BIN)-$(GOLANGCI_LINT_VER)
 
+OPENSHIFT_GOIMPORTS_VER := c72f1dc2e3aacfa00aece3391d938c9bc734e791
+OPENSHIFT_GOIMPORTS_BIN := openshift-goimports
+OPENSHIFT_GOIMPORTS := $(TOOLS_DIR)/$(OPENSHIFT_GOIMPORTS_BIN)-$(OPENSHIFT_GOIMPORTS_VER)
+export OPENSHIFT_GOIMPORTS # so hack scripts can use it
+
+CODE_GENERATOR_VER := v2.1.0
+CODE_GENERATOR_BIN := code-generator
+CODE_GENERATOR := $(TOOLS_GOBIN_DIR)/$(CODE_GENERATOR_BIN)-$(CODE_GENERATOR_VER)
+export CODE_GENERATOR # so hack scripts can use it
+
 KCP_APIGEN_VER := v0.0.0-20230611113342-27b3b359e28e # TODO: Replace once fixed upstream
 KCP_APIGEN_BIN := kcp-apigen
 KCP_APIGEN_GEN := $(TOOLS_DIR)/$(KCP_APIGEN_BIN)-$(KCP_APIGEN_VER)
 export KCP_APIGEN_GEN # so hack scripts can use it
 
-tools: $(GOLANGCI_LINT) $(CONTROLLER_GEN) $(KCP_APIGEN_GEN)
+tools: $(GOLANGCI_LINT) $(CONTROLLER_GEN) $(KCP_APIGEN_GEN) $(OPENSHIFT_GOIMPORTS)
 .PHONY: tools
 
 $(CONTROLLER_GEN):
@@ -52,8 +62,14 @@ $(CONTROLLER_GEN):
 $(GOLANGCI_LINT):
 	GOBIN=$(TOOLS_GOBIN_DIR) $(GO_INSTALL) github.com/golangci/golangci-lint/cmd/golangci-lint $(GOLANGCI_LINT_BIN) $(GOLANGCI_LINT_VER)
 
+$(CODE_GENERATOR):
+	GOBIN=$(TOOLS_GOBIN_DIR) $(GO_INSTALL) github.com/kcp-dev/code-generator/v2 $(CODE_GENERATOR_BIN) $(CODE_GENERATOR_VER)
+
 $(KCP_APIGEN_GEN):
 	GOBIN=$(TOOLS_GOBIN_DIR) $(GO_INSTALL) github.com/kcp-dev/kcp/sdk/cmd/apigen $(KCP_APIGEN_BIN) $(KCP_APIGEN_VER)
+
+$(OPENSHIFT_GOIMPORTS):
+	GOBIN=$(TOOLS_GOBIN_DIR) $(GO_INSTALL) github.com/openshift-eng/openshift-goimports $(OPENSHIFT_GOIMPORTS_BIN) $(OPENSHIFT_GOIMPORTS_VER)
 
 crds: $(CONTROLLER_GEN) $(YAML_PATCH)
 	./hack/update-codegen-crds.sh
@@ -81,3 +97,7 @@ verify-codegen:
 		echo "You need to run 'make codegen' to update generated files and commit them"; \
 		exit 1; \
 	fi
+
+.PHONY: imports
+imports: $(OPENSHIFT_GOIMPORTS)
+	$(OPENSHIFT_GOIMPORTS) -m github.com/faroshq/tmc

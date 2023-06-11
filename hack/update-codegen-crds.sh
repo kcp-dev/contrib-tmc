@@ -57,5 +57,5 @@ ${CONTROLLER_GEN} \
     #go run main.go --input-dir "${REPO_ROOT}"/config/crds --output-dir "${REPO_ROOT}"/config/root-phase0
 
     # KO_DEFAULTBASEIMAGE=bitnami/git KO_DOCKER_REPO=quay.io/mangirdas/kcp-apigen ko publish --platform linux/amd64,linux/ppc64le,linux/arm64 --sbom=none -B cmd/apigen/*
-    docker run --user $(id -u) -v $(pwd):/data:z quay.io/mangirdas/kcp-apigen/main.go:latest --input-dir /data/config/crds --output-dir /data/config/root-phase0
+    docker run --user $(id -u) --workdir /data -v $(pwd):/data:z quay.io/mangirdas/kcp-apigen/main.go:latest --input-dir /data/config/crds --output-dir /data/config/root-phase0
 )
