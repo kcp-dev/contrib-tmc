@@ -1,0 +1,86 @@
+{
+	"folders": [
+		{
+			"name": "kubernetes",
+			"path": "../../kubernetes"
+		},
+		{
+			"name": "kcp",
+			"path": "../../kcp"
+		},
+                {
+                        "name": "tmc",
+                        "path": ".."
+                },
+	],
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "ko syncer to local kind",
+				"type": "shell",
+				"command": "echo SYNCER_IMAGE=$(ko publish ./cmd/syncer) > ${workspaceFolder:syncer}/.syncer/syncer.env",
+				"problemMatcher": [],
+				"options": {
+					"cwd": "${workspaceFolder:tmc}",
+					"env": {
+						"KO_DOCKER_REPO": "kind.local"
+					}
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch kcp",
+				"type": "go",
+				"request": "launch",
+				"mode": "debug",
+				"program": "${workspaceFolder:kcp}/cmd/kcp",
+				"env": {
+					"GOMOD": "${workspaceFolder:kcp}/go.mod"
+				},
+				"cwd": "${workspaceFolder:kcp}",
+				"args": [
+					"start",
+					"--token-auth-file",
+					"${workspaceFolder:kcp}/test/e2e/framework/auth-tokens.csv",
+				]
+			},
+			{
+				"name": "Launch syncer",
+				"type": "go",
+				"request": "launch",
+				"mode": "debug",
+				"program": "${workspaceFolder:tmc}/cmd/syncer",
+				"env": {
+					"GOMOD": "${workspaceFolder:tmc}/go.mod",
+					"NAMESPACE": "<TO BE DEFINED>",
+				},
+				"cwd": "${workspaceFolder:tmc}",
+				"args": [
+					"--dns",
+					"localhost",
+					"--sync-target-name",
+					"us-west1",
+					"--sync-target-uid",
+					"<TO BE DEFINED>",
+					"--from-kubeconfig",
+					"${workspaceFolder:kcp}/.kcp/admin.kubeconfig",
+					"--from-context",
+					"system:admin",
+					"--from-cluster",
+					"root:org:negotiation",
+					"--to-kubeconfig",
+					"${workspaceFolder:syncer}/.syncer/clusters/kind/us-west1.kubeconfig",
+					"--resources",
+					"deployments.apps",
+					"--resources",
+					"services",
+				],
+			}
+		]
+	},
+}
