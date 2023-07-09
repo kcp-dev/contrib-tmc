@@ -20,15 +20,15 @@ import (
 	"context"
 	"math/rand"
 
+	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
+	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/util/sets"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
-	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
 )
 
 // placementReconciler watches namespaces within a workspace and assigns those to location from
@@ -40,11 +40,13 @@ type placementReconciler struct {
 func (r *placementReconciler) reconcile(ctx context.Context, placement *schedulingv1alpha1.Placement) (reconcileStatus, *schedulingv1alpha1.Placement, error) {
 	// get location workspace at first
 	var locationWorkspace logicalcluster.Path
-	if len(placement.Spec.LocationWorkspace) > 0 {
-		locationWorkspace = logicalcluster.NewPath(placement.Spec.LocationWorkspace)
-	} else {
-		locationWorkspace = logicalcluster.From(placement).Path()
-	}
+	// TODO(MJ): currently this disables the cross workspace placements. This is due to
+	// fact indexers are build ontop of logicalcluster paths and we use here the 'readable' paths
+	//if len(placement.Spec.LocationWorkspace) > 0 {
+	//	locationWorkspace = logicalcluster.NewPath(placement.Spec.LocationWorkspace)
+	//} else {
+	locationWorkspace = logicalcluster.From(placement).Path()
+	//}
 
 	locationWorkspace, validLocationNames, err := r.validLocationNames(placement, locationWorkspace)
 	if err != nil {
@@ -111,7 +113,6 @@ func (r *placementReconciler) reconcile(ctx context.Context, placement *scheduli
 func (r *placementReconciler) validLocationNames(placement *schedulingv1alpha1.Placement, locationWorkspace logicalcluster.Path) (logicalcluster.Path, sets.Set[string], error) {
 	var locationCluster logicalcluster.Path
 	selectedLocations := sets.New[string]()
-
 	locations, err := r.listLocationsByPath(locationWorkspace)
 	if err != nil {
 		return logicalcluster.None, selectedLocations, err

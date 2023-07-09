@@ -30,7 +30,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/apimachinery/pkg/util/yaml"
 
-	"github.com/faroshq/tmc/pkg/syncer/shared"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 //go:embed *.yaml

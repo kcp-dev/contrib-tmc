@@ -27,6 +27,8 @@ import (
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
 	v1 "github.com/kcp-dev/client-go/informers/apps/v1"
 	kubernetesclient "github.com/kcp-dev/client-go/kubernetes"
+	"github.com/kcp-dev/kcp/pkg/logging"
+	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	appsv1 "k8s.io/api/apps/v1"
@@ -41,15 +43,13 @@ import (
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
 
-	"github.com/faroshq/tmc/apis/workload/helpers"
-	"github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/faroshq/tmc/tmc/pkg/coordination"
-	"github.com/kcp-dev/kcp/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
+	"github.com/kcp-dev/contrib-tmc/apis/workload/helpers"
+	"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/tmc/coordination"
 )
 
 const (
-	controllerName = "kcp-deployment-coordination"
+	controllerName = "tmc-deployment-coordination"
 )
 
 type Deployment = appsv1.Deployment
@@ -118,8 +118,9 @@ type controller struct {
 	upstreamViewQueue workqueue.RateLimitingInterface
 	syncerViewQueue   workqueue.RateLimitingInterface
 
-	getDeployment func(clusterName logicalcluster.Name, namespace, name string) (*appsv1.Deployment, error)
-	patcher       func(clusterName logicalcluster.Name, namespace string) committer.Patcher[*appsv1.Deployment]
+	getDeployment     func(clusterName logicalcluster.Name, namespace, name string) (*appsv1.Deployment, error)
+	kubeClusterClient kubernetesclient.ClusterInterface
+	patcher           func(clusterName logicalcluster.Name, namespace string) committer.Patcher[*appsv1.Deployment]
 
 	syncerViewRetriever coordination.SyncerViewRetriever[*appsv1.Deployment]
 	gvr                 schema.GroupVersionResource

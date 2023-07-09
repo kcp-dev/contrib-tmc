@@ -23,6 +23,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/kcp-dev/kcp/sdk/client"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/stretchr/testify/require"
 
@@ -35,8 +36,7 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/util/workqueue"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/kcp-dev/kcp/sdk/client"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 func TestSyncerNamespaceProcess(t *testing.T) {

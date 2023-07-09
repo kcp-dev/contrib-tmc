@@ -34,6 +34,13 @@ import (
 	"time"
 
 	jsonpatch "github.com/evanphx/json-patch"
+	"github.com/kcp-dev/kcp/pkg/cliplugins/base"
+	"github.com/kcp-dev/kcp/pkg/cliplugins/helpers"
+	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
+	apiresourcev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	tenancyv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1"
+	kcpclient "github.com/kcp-dev/kcp/sdk/client/clientset/versioned"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/martinlindhe/base36"
 	"github.com/spf13/cobra"
@@ -54,16 +61,9 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	tmcclient "github.com/faroshq/tmc/client/clientset/versioned"
-	"github.com/faroshq/tmc/pkg/reconciler/workload/apiexport"
-	"github.com/kcp-dev/kcp/pkg/cliplugins/base"
-	"github.com/kcp-dev/kcp/pkg/cliplugins/helpers"
-	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
-	apiresourcev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
-	tenancyv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1"
-	kcpclient "github.com/kcp-dev/kcp/sdk/client/clientset/versioned"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	tmcclient "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/workload/apiexport"
 )
 
 //go:embed *.yaml
@@ -592,7 +592,8 @@ func (o *SyncOptions) enableSyncerForWorkspace(ctx context.Context, config *rest
 			Verbs:         []string{"update", "patch"},
 			APIGroups:     []string{workloadv1alpha1.SchemeGroupVersion.Group},
 			ResourceNames: []string{syncTargetName},
-			Resources:     []string{"synctargets/status"},
+			//Resources:     []string{"synctargets/status"},
+			Resources: []string{"synctargets", "synctargets/status"}, // https://github.com/kcp-dev/contrib-tmc/issues/1
 		},
 		{
 			Verbs:     []string{"get", "create", "update", "delete", "list", "watch"},

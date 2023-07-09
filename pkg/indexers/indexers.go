@@ -22,8 +22,8 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	syncershared "github.com/faroshq/tmc/pkg/syncer/shared"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	syncershared "github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 const (

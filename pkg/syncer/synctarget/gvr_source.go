@@ -22,6 +22,10 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/kcp-dev/kcp/pkg/informer"
+	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
+	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
+
 	authorizationv1 "k8s.io/api/authorization/v1"
 	corev1 "k8s.io/api/core/v1"
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
@@ -35,11 +39,8 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	workloadv1alpha1informers "github.com/faroshq/tmc/client/informers/externalversions/workload/v1alpha1"
-	"github.com/kcp-dev/kcp/pkg/informer"
-	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
-	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	workloadv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
 )
 
 var _ informer.GVRSource = (*syncTargetGVRSource)(nil)

@@ -17,7 +17,7 @@ import (
 	_ "github.com/coredns/coredns/plugin/forward"
 	_ "github.com/coredns/coredns/plugin/whoami"
 
-	_ "github.com/faroshq/tmc/pkg/dns/plugin/nsmap"
+	_ "github.com/kcp-dev/contrib-tmc/pkg/dns/plugin/nsmap"
 )
 
 const (

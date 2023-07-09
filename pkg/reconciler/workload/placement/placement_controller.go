@@ -24,6 +24,16 @@ import (
 
 	"github.com/go-logr/logr"
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
+	"github.com/kcp-dev/kcp/pkg/indexers"
+	"github.com/kcp-dev/kcp/pkg/logging"
+	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	"github.com/kcp-dev/kcp/sdk/apis/core"
+	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
+	apisinformers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions/apis/v1alpha1"
+	corev1alpha1informers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions/core/v1alpha1"
+	apislisters "github.com/kcp-dev/kcp/sdk/client/listers/apis/v1alpha1"
+	corev1alpha1listers "github.com/kcp-dev/kcp/sdk/client/listers/core/v1alpha1"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -35,38 +45,28 @@ import (
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	tmcclientset "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	schedulingv1alpha1client "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
-	schedulinginformers "github.com/faroshq/tmc/client/informers/externalversions/scheduling/v1alpha1"
-	workloadinformers "github.com/faroshq/tmc/client/informers/externalversions/workload/v1alpha1"
-	schedulingv1alpha1listers "github.com/faroshq/tmc/client/listers/scheduling/v1alpha1"
-	workloadv1alpha1listers "github.com/faroshq/tmc/client/listers/workload/v1alpha1"
-	"github.com/kcp-dev/kcp/pkg/indexers"
-	"github.com/kcp-dev/kcp/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
-	"github.com/kcp-dev/kcp/sdk/apis/core"
-	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
-	apisinformers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions/apis/v1alpha1"
-	corev1alpha1informers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions/core/v1alpha1"
-	apislisters "github.com/kcp-dev/kcp/sdk/client/listers/apis/v1alpha1"
-	corev1alpha1listers "github.com/kcp-dev/kcp/sdk/client/listers/core/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	schedulingv1alpha1client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	schedulinginformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/scheduling/v1alpha1"
+	workloadinformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
+	schedulingv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/scheduling/v1alpha1"
+	workloadv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/workload/v1alpha1"
 )
 
 const (
-	ControllerName         = "kcp-workload-placement"
+	ControllerName         = "tmc-workload-placement"
 	bySelectedLocationPath = ControllerName + "-bySelectedLocationPath"
 )
 
 // NewController returns a new controller starting the process of selecting synctarget for a placement.
 func NewController(
 	kcpClusterClient kcpclientset.ClusterInterface,
-	tmcClient tmcclientset.ClusterInterface,
+	tmcClusterClient tmcclientset.ClusterInterface,
 	logicalClusterInformer corev1alpha1informers.LogicalClusterClusterInformer,
-	locationInformer, globalLocationInformer schedulinginformers.LocationClusterInformer,
-	syncTargetInformer, globalSyncTargetInformer workloadinformers.SyncTargetClusterInformer,
+	locationInformer schedulinginformers.LocationClusterInformer,
+	syncTargetInformer workloadinformers.SyncTargetClusterInformer,
 	placementInformer schedulinginformers.PlacementClusterInformer,
 	apiBindingInformer apisinformers.APIBindingClusterInformer,
 ) (*controller, error) {
@@ -76,7 +76,7 @@ func NewController(
 		queue: queue,
 
 		kcpClusterClient: kcpClusterClient,
-		tmcClient:        tmcClient,
+		tmcClusterClient: tmcClusterClient,
 
 		logicalClusterLister: logicalClusterInformer.Lister(),
 
@@ -85,8 +85,8 @@ func NewController(
 
 		listLocations: func(clusterName logicalcluster.Name) ([]*schedulingv1alpha1.Location, error) {
 			locations, err := locationInformer.Lister().Cluster(clusterName).List(labels.Everything())
-			if err != nil || len(locations) == 0 {
-				return globalLocationInformer.Lister().Cluster(clusterName).List(labels.Everything())
+			if err != nil {
+				return nil, err
 			}
 
 			return locations, nil
@@ -96,14 +96,14 @@ func NewController(
 
 		listSyncTargets: func(clusterName logicalcluster.Name) ([]*workloadv1alpha1.SyncTarget, error) {
 			targets, err := syncTargetInformer.Lister().Cluster(clusterName).List(labels.Everything())
-			if err != nil || len(targets) == 0 {
-				return globalSyncTargetInformer.Lister().Cluster(clusterName).List(labels.Everything())
+			if err != nil {
+				return nil, err
 			}
 			return targets, nil
 		},
 
 		getLocation: func(path logicalcluster.Path, name string) (*schedulingv1alpha1.Location, error) {
-			return indexers.ByPathAndNameWithFallback[*schedulingv1alpha1.Location](schedulingv1alpha1.Resource("locations"), locationInformer.Informer().GetIndexer(), globalLocationInformer.Informer().GetIndexer(), path, name)
+			return indexers.ByPathAndName[*schedulingv1alpha1.Location](schedulingv1alpha1.Resource("locations"), locationInformer.Informer().GetIndexer(), path, name)
 		},
 
 		placementLister:  placementInformer.Lister(),
@@ -111,7 +111,7 @@ func NewController(
 
 		apiBindingLister: apiBindingInformer.Lister(),
 
-		commit: committer.NewCommitter[*Placement, Patcher, *PlacementSpec, *PlacementStatus](tmcClient.SchedulingV1alpha1().Placements()),
+		commit: committer.NewCommitter[*Placement, Patcher, *PlacementSpec, *PlacementStatus](tmcClusterClient.SchedulingV1alpha1().Placements()),
 	}
 
 	if err := placementInformer.Informer().AddIndexers(cache.Indexers{
@@ -121,10 +121,6 @@ func NewController(
 	}
 
 	indexers.AddIfNotPresentOrDie(locationInformer.Informer().GetIndexer(), cache.Indexers{
-		indexers.ByLogicalClusterPathAndName: indexers.IndexByLogicalClusterPathAndName,
-	})
-
-	indexers.AddIfNotPresentOrDie(globalLocationInformer.Informer().GetIndexer(), cache.Indexers{
 		indexers.ByLogicalClusterPathAndName: indexers.IndexByLogicalClusterPathAndName,
 	})
 
@@ -200,7 +196,7 @@ type controller struct {
 	queue workqueue.RateLimitingInterface
 
 	kcpClusterClient kcpclientset.ClusterInterface
-	tmcClient        tmcclientset.ClusterInterface
+	tmcClusterClient tmcclientset.ClusterInterface
 
 	logicalClusterLister corev1alpha1listers.LogicalClusterClusterLister
 

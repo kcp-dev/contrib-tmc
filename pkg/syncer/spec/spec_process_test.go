@@ -26,6 +26,8 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
+	ddsif "github.com/kcp-dev/kcp/pkg/informer"
+	kcpcorev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -50,12 +52,10 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/faroshq/tmc/pkg/syncer/indexers"
-	"github.com/faroshq/tmc/pkg/syncer/spec/dns"
-	"github.com/faroshq/tmc/pkg/syncer/spec/mutators"
-	ddsif "github.com/kcp-dev/kcp/pkg/informer"
-	kcpcorev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/indexers"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/spec/dns"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/spec/mutators"
 )
 
 var scheme *runtime.Scheme

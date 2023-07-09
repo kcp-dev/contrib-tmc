@@ -25,6 +25,9 @@ import (
 	"github.com/go-logr/logr"
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
 	kcpdynamic "github.com/kcp-dev/client-go/dynamic"
+	"github.com/kcp-dev/kcp/pkg/indexers"
+	ddsif "github.com/kcp-dev/kcp/pkg/informer"
+	"github.com/kcp-dev/kcp/pkg/logging"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	corev1 "k8s.io/api/core/v1"
@@ -42,19 +45,16 @@ import (
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	syncerindexers "github.com/faroshq/tmc/pkg/syncer/indexers"
-	"github.com/faroshq/tmc/pkg/syncer/shared"
-	"github.com/faroshq/tmc/pkg/syncer/spec/dns"
-	"github.com/faroshq/tmc/pkg/syncer/synctarget"
-	. "github.com/faroshq/tmc/tmc/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/indexers"
-	ddsif "github.com/kcp-dev/kcp/pkg/informer"
-	"github.com/kcp-dev/kcp/pkg/logging"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	syncerindexers "github.com/kcp-dev/contrib-tmc/pkg/syncer/indexers"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/spec/dns"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/synctarget"
+	. "github.com/kcp-dev/contrib-tmc/tmc/logging"
 )
 
 const (
-	controllerName = "kcp-workload-syncer-spec"
+	controllerName = "tmc-workload-syncer-spec"
 )
 
 var namespaceGVR schema.GroupVersionResource = corev1.SchemeGroupVersion.WithResource("namespaces")

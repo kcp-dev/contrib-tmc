@@ -25,6 +25,8 @@ import (
 	"strings"
 
 	"github.com/kcp-dev/client-go/dynamic"
+	"github.com/kcp-dev/kcp/pkg/indexers"
+	kcpinformers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	corev1 "k8s.io/api/core/v1"
@@ -37,11 +39,9 @@ import (
 	"k8s.io/apiserver/pkg/endpoints/request"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	tmcindexers "github.com/faroshq/tmc/pkg/indexers"
-	"github.com/faroshq/tmc/pkg/syncer/shared"
-	"github.com/kcp-dev/kcp/pkg/indexers"
-	kcpinformers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	tmcindexers "github.com/kcp-dev/contrib-tmc/pkg/indexers"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 var (

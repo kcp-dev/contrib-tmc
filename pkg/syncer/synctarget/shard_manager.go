@@ -22,6 +22,7 @@ import (
 	"sync"
 
 	kcpdynamic "github.com/kcp-dev/client-go/dynamic"
+	"github.com/kcp-dev/kcp/pkg/informer"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -30,8 +31,7 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/kcp-dev/kcp/pkg/informer"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 // NewLogicalClusterIndex creates an index that contains all the keys of the synced and upsynced resources,

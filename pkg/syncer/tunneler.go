@@ -24,6 +24,7 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/kcp-dev/kcp/pkg/server/requestinfo"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -39,10 +40,9 @@ import (
 	"k8s.io/klog/v2"
 	"k8s.io/utils/clock"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/faroshq/tmc/pkg/syncer/shared"
-	"github.com/faroshq/tmc/pkg/tunneler"
-	"github.com/kcp-dev/kcp/pkg/server/requestinfo"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
+	"github.com/kcp-dev/contrib-tmc/pkg/tunneler"
 )
 
 var (

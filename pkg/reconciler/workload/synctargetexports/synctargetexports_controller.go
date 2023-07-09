@@ -23,23 +23,6 @@ import (
 
 	"github.com/go-logr/logr"
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
-	"github.com/kcp-dev/logicalcluster/v3"
-
-	"k8s.io/apimachinery/pkg/api/equality"
-	"k8s.io/apimachinery/pkg/labels"
-	"k8s.io/apimachinery/pkg/util/errors"
-	"k8s.io/apimachinery/pkg/util/runtime"
-	"k8s.io/apimachinery/pkg/util/sets"
-	"k8s.io/apimachinery/pkg/util/wait"
-	"k8s.io/client-go/tools/cache"
-	"k8s.io/client-go/util/workqueue"
-	"k8s.io/klog/v2"
-
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	tmcclientset "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	workloadv1alpha1client "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1"
-	workloadv1alpha1informers "github.com/faroshq/tmc/client/informers/externalversions/workload/v1alpha1"
-	workloadv1alpha1listers "github.com/faroshq/tmc/client/listers/workload/v1alpha1"
 	"github.com/kcp-dev/kcp/pkg/indexers"
 	"github.com/kcp-dev/kcp/pkg/informer"
 	"github.com/kcp-dev/kcp/pkg/logging"
@@ -52,10 +35,27 @@ import (
 	apisv1alpha1informers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions/apis/v1alpha1"
 	apiresourcev1alpha1listers "github.com/kcp-dev/kcp/sdk/client/listers/apiresource/v1alpha1"
 	apisv1alpha1listers "github.com/kcp-dev/kcp/sdk/client/listers/apis/v1alpha1"
+	"github.com/kcp-dev/logicalcluster/v3"
+
+	"k8s.io/apimachinery/pkg/api/equality"
+	"k8s.io/apimachinery/pkg/labels"
+	"k8s.io/apimachinery/pkg/util/errors"
+	"k8s.io/apimachinery/pkg/util/runtime"
+	"k8s.io/apimachinery/pkg/util/sets"
+	"k8s.io/apimachinery/pkg/util/wait"
+	"k8s.io/client-go/tools/cache"
+	"k8s.io/client-go/util/workqueue"
+	"k8s.io/klog/v2"
+
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	workloadv1alpha1client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
+	workloadv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
+	workloadv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/workload/v1alpha1"
 )
 
 const (
-	ControllerName = "kcp-synctarget-export-controller"
+	ControllerName = "tmc-synctarget-export-controller"
 
 	indexSyncTargetsByExport           = ControllerName + "ByExport"
 	indexAPIExportsByAPIResourceSchema = ControllerName + "ByAPIResourceSchema"
@@ -65,7 +65,7 @@ const (
 // of a syncTarget.
 func NewController(
 	kcpClusterClient kcpclientset.ClusterInterface,
-	tmcClient tmcclientset.ClusterInterface,
+	tmcClusterClient tmcclientset.ClusterInterface,
 	syncTargetInformer workloadv1alpha1informers.SyncTargetClusterInformer,
 	apiExportInformer, globalAPIExportInformer apisv1alpha1informers.APIExportClusterInformer,
 	apiResourceSchemaInformer, globalAPIResourceSchemaInformer apisv1alpha1informers.APIResourceSchemaClusterInformer,
@@ -74,7 +74,7 @@ func NewController(
 	c := &Controller{
 		queue:             workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), ControllerName),
 		kcpClusterClient:  kcpClusterClient,
-		tmcClient:         tmcClient,
+		tmcClusterClient:  tmcClusterClient,
 		syncTargetIndexer: syncTargetInformer.Informer().GetIndexer(),
 		syncTargetLister:  syncTargetInformer.Lister(),
 		apiExportsIndexer: apiExportInformer.Informer().GetIndexer(),
@@ -83,7 +83,7 @@ func NewController(
 		},
 		getAPIResourceSchema: informer.NewScopedGetterWithFallback[*apisv1alpha1.APIResourceSchema, apisv1alpha1listers.APIResourceSchemaLister](apiResourceSchemaInformer.Lister(), globalAPIResourceSchemaInformer.Lister()),
 		apiImportLister:      apiResourceImportInformer.Lister(),
-		commit:               committer.NewCommitter[*SyncTarget, Patcher, *SyncTargetSpec, *SyncTargetStatus](tmcClient.WorkloadV1alpha1().SyncTargets()),
+		commit:               committer.NewCommitter[*SyncTarget, Patcher, *SyncTargetSpec, *SyncTargetStatus](tmcClusterClient.WorkloadV1alpha1().SyncTargets()),
 	}
 
 	if err := syncTargetInformer.Informer().AddIndexers(cache.Indexers{
@@ -156,7 +156,7 @@ type CommitFunc = func(context.Context, *Resource, *Resource) error
 type Controller struct {
 	queue            workqueue.RateLimitingInterface
 	kcpClusterClient kcpclientset.ClusterInterface
-	tmcClient        tmcclientset.ClusterInterface
+	tmcClusterClient tmcclientset.ClusterInterface
 
 	syncTargetIndexer    cache.Indexer
 	syncTargetLister     workloadv1alpha1listers.SyncTargetClusterLister

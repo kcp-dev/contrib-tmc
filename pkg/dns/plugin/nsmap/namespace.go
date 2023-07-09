@@ -26,7 +26,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/klog/v2"
 
-	"github.com/faroshq/tmc/third_party/coredns"
+	"github.com/kcp-dev/contrib-tmc/third_party/coredns"
 )
 
 type namespaceRewriter struct {

@@ -22,7 +22,7 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/faroshq/tmc/pkg/syncer/shared"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 const (

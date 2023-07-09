@@ -21,6 +21,7 @@ import (
 	"net/url"
 	"sort"
 
+	ddsif "github.com/kcp-dev/kcp/pkg/informer"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	corev1 "k8s.io/api/core/v1"
@@ -32,9 +33,8 @@ import (
 	listerscorev1 "k8s.io/client-go/listers/core/v1"
 	utilspointer "k8s.io/utils/pointer"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/faroshq/tmc/pkg/syncer/shared"
-	ddsif "github.com/kcp-dev/kcp/pkg/informer"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 type ListSecretFunc func(clusterName logicalcluster.Name, namespace string) ([]runtime.Object, error)

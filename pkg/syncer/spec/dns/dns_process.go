@@ -34,7 +34,7 @@ import (
 	listersrbacv1 "k8s.io/client-go/listers/rbac/v1"
 	"k8s.io/klog/v2"
 
-	"github.com/faroshq/tmc/pkg/syncer/shared"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 type DNSProcessor struct {

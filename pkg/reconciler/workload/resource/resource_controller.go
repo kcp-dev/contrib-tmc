@@ -26,6 +26,10 @@ import (
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
 	kcpdynamic "github.com/kcp-dev/client-go/dynamic"
 	kcpcorev1informers "github.com/kcp-dev/client-go/informers/core/v1"
+	"github.com/kcp-dev/kcp/pkg/indexers"
+	"github.com/kcp-dev/kcp/pkg/informer"
+	"github.com/kcp-dev/kcp/pkg/logging"
+	"github.com/kcp-dev/kcp/pkg/reconciler/apis/apiexport"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	corev1 "k8s.io/api/core/v1"
@@ -44,20 +48,16 @@ import (
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	schedulingv1alpha1informers "github.com/faroshq/tmc/client/informers/externalversions/scheduling/v1alpha1"
-	workloadv1alpha1informers "github.com/faroshq/tmc/client/informers/externalversions/workload/v1alpha1"
-	tmcindexers "github.com/faroshq/tmc/pkg/indexers"
-	"github.com/faroshq/tmc/pkg/syncer/shared"
-	"github.com/kcp-dev/kcp/pkg/indexers"
-	"github.com/kcp-dev/kcp/pkg/informer"
-	"github.com/kcp-dev/kcp/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/reconciler/apis/apiexport"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	schedulingv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/scheduling/v1alpha1"
+	workloadv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
+	tmcindexers "github.com/kcp-dev/contrib-tmc/pkg/indexers"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 const (
-	ControllerName  = "kcp-workload-resource-scheduler"
+	ControllerName  = "tmc-workload-resource-scheduler"
 	bySyncTargetKey = ControllerName + "bySyncTargetKey"
 )
 
@@ -65,12 +65,12 @@ const (
 func NewController(
 	dynamicClusterClient kcpdynamic.ClusterInterface,
 	ddsif *informer.DiscoveringDynamicSharedInformerFactory,
-	syncTargetInformer, globalSyncTargetInformer workloadv1alpha1informers.SyncTargetClusterInformer,
+	syncTargetInformer workloadv1alpha1informers.SyncTargetClusterInformer,
 	namespaceInformer kcpcorev1informers.NamespaceClusterInformer,
 	placementInformer schedulingv1alpha1informers.PlacementClusterInformer,
 ) (*Controller, error) {
-	resourceQueue := workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "kcp-namespace-resource")
-	gvrQueue := workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "kcp-namespace-gvr")
+	resourceQueue := workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "tmc-namespace-resource")
+	gvrQueue := workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), "tmc-namespace-gvr")
 
 	c := &Controller{
 		resourceQueue: resourceQueue,
@@ -99,7 +99,7 @@ func NewController(
 
 		getSyncTargetFromKey: func(syncTargetKey string) (*workloadv1alpha1.SyncTarget, bool, error) {
 			syncTargets, err := indexers.ByIndexWithFallback[*workloadv1alpha1.SyncTarget](syncTargetInformer.Informer().GetIndexer(),
-				globalSyncTargetInformer.Informer().GetIndexer(), bySyncTargetKey, syncTargetKey)
+				syncTargetInformer.Informer().GetIndexer(), bySyncTargetKey, syncTargetKey)
 			if err != nil {
 				return nil, false, err
 			}
@@ -147,17 +147,11 @@ func NewController(
 		bySyncTargetKey: indexBySyncTargetKey,
 	})
 
-	indexers.AddIfNotPresentOrDie(globalSyncTargetInformer.Informer().GetIndexer(), cache.Indexers{
+	indexers.AddIfNotPresentOrDie(syncTargetInformer.Informer().GetIndexer(), cache.Indexers{
 		bySyncTargetKey: indexBySyncTargetKey,
 	})
 
 	_, _ = syncTargetInformer.Informer().AddEventHandler(cache.ResourceEventHandlerFuncs{
-		DeleteFunc: func(obj interface{}) {
-			c.enqueueSyncTarget(obj)
-		},
-	})
-
-	_, _ = globalSyncTargetInformer.Informer().AddEventHandler(cache.ResourceEventHandlerFuncs{
 		DeleteFunc: func(obj interface{}) {
 			c.enqueueSyncTarget(obj)
 		},

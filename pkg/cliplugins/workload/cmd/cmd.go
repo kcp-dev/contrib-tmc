@@ -23,7 +23,7 @@ import (
 
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 
-	"github.com/faroshq/tmc/pkg/cliplugins/workload/plugin"
+	"github.com/kcp-dev/contrib-tmc/pkg/cliplugins/workload/plugin"
 )
 
 var (

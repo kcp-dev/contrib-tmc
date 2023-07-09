@@ -25,6 +25,11 @@ import (
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
 	kcpcorev1informers "github.com/kcp-dev/client-go/informers/core/v1"
 	corev1listers "github.com/kcp-dev/client-go/listers/core/v1"
+	"github.com/kcp-dev/kcp/pkg/indexers"
+	"github.com/kcp-dev/kcp/pkg/logging"
+	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
+	"github.com/kcp-dev/kcp/sdk/apis/core"
+	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	corev1 "k8s.io/api/core/v1"
@@ -38,20 +43,15 @@ import (
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	tmcclientset "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	schedulingv1alpha1client "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
-	schedulingv1alpha1informers "github.com/faroshq/tmc/client/informers/externalversions/scheduling/v1alpha1"
-	schedulingv1alpha1listers "github.com/faroshq/tmc/client/listers/scheduling/v1alpha1"
-	"github.com/kcp-dev/kcp/pkg/indexers"
-	"github.com/kcp-dev/kcp/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
-	"github.com/kcp-dev/kcp/sdk/apis/core"
-	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	schedulingv1alpha1client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	schedulingv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/scheduling/v1alpha1"
+	schedulingv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/scheduling/v1alpha1"
 )
 
 const (
-	ControllerName      = "kcp-scheduling-placement"
+	ControllerName      = "tmc-scheduling-placement"
 	byLocationWorkspace = ControllerName + "-byLocationWorkspace"
 )
 
@@ -59,9 +59,9 @@ const (
 // a placement annotation..
 func NewController(
 	kcpClusterClient kcpclientset.ClusterInterface,
-	tmcClient tmcclientset.ClusterInterface,
+	tmcClusterClient tmcclientset.ClusterInterface,
 	namespaceInformer kcpcorev1informers.NamespaceClusterInformer,
-	locationInformer, globalLocationInformer schedulingv1alpha1informers.LocationClusterInformer,
+	locationInformer schedulingv1alpha1informers.LocationClusterInformer,
 	placementInformer schedulingv1alpha1informers.PlacementClusterInformer,
 ) (*controller, error) {
 	queue := workqueue.NewNamedRateLimitingQueue(workqueue.DefaultControllerRateLimiter(), ControllerName)
@@ -77,22 +77,23 @@ func NewController(
 			queue.AddAfter(key, duration)
 		},
 		kcpClusterClient: kcpClusterClient,
-		tmcClient:        tmcClient,
+		tmcClusterClient: tmcClusterClient,
 
 		namespaceLister: namespaceInformer.Lister(),
 
 		listLocationsByPath: func(path logicalcluster.Path) ([]*schedulingv1alpha1.Location, error) {
-			objs, err := indexers.ByIndexWithFallback[*schedulingv1alpha1.Location](locationInformer.Informer().GetIndexer(), globalLocationInformer.Informer().GetIndexer(), indexers.ByLogicalClusterPath, path.String())
+			objs, err := indexers.ByIndex[*schedulingv1alpha1.Location](locationInformer.Informer().GetIndexer(), indexers.ByLogicalClusterPath, path.String())
 			if err != nil {
 				return nil, err
 			}
+
 			return objs, nil
 		},
 
 		placementLister:  placementInformer.Lister(),
 		placementIndexer: placementInformer.Informer().GetIndexer(),
 
-		commit: committer.NewCommitter[*Placement, Patcher, *PlacementSpec, *PlacementStatus](tmcClient.SchedulingV1alpha1().Placements()),
+		commit: committer.NewCommitter[*Placement, Patcher, *PlacementSpec, *PlacementStatus](tmcClusterClient.SchedulingV1alpha1().Placements()),
 	}
 
 	if err := placementInformer.Informer().AddIndexers(cache.Indexers{
@@ -102,9 +103,6 @@ func NewController(
 	}
 
 	indexers.AddIfNotPresentOrDie(locationInformer.Informer().GetIndexer(), cache.Indexers{
-		indexers.ByLogicalClusterPath: indexers.IndexByLogicalClusterPath,
-	})
-	indexers.AddIfNotPresentOrDie(globalLocationInformer.Informer().GetIndexer(), cache.Indexers{
 		indexers.ByLogicalClusterPath: indexers.IndexByLogicalClusterPath,
 	})
 
@@ -171,7 +169,7 @@ type controller struct {
 	enqueueAfter func(*corev1.Namespace, time.Duration)
 
 	kcpClusterClient kcpclientset.ClusterInterface
-	tmcClient        tmcclientset.ClusterInterface
+	tmcClusterClient tmcclientset.ClusterInterface
 
 	namespaceLister corev1listers.NamespaceClusterLister
 
