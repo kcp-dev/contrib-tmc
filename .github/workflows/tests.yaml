@@ -1,0 +1,34 @@
+name: unit-tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  unit:
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 8
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.19
+        id: go
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Unit tests
+        id: coverage
+        shell: bash
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+        run: |
+          make test
+          COVERAGE=$(go tool cover -func profile.cov | grep total: | awk '{print $3}')
+          echo "\n\nCoverage will be $COVERAGE"
+          echo "::set-env name=COVERAGE::$COVERAGE"
+      - run: |
+          echo "${{env.COVERAGE}}"
+          echo $COVERAGE
