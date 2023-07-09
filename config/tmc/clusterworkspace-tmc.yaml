@@ -1,7 +1,7 @@
 apiVersion: tenancy.kcp.io/v1alpha1
 kind: Workspace
 metadata:
-  name: compute
+  name: tmc
   annotations:
     bootstrap.kcp.io/create-only: "true"
 spec:

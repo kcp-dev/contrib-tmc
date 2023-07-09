@@ -14,27 +14,44 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package kube124
+package root
 
 import (
 	"context"
 	"embed"
 
-	confighelpers "github.com/kcp-dev/kcp/config/helpers"
-
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/client-go/discovery"
 	"k8s.io/client-go/dynamic"
+
+	confighelpers "github.com/kcp-dev/kcp/config/helpers"
 )
 
 //go:embed *.yaml
-var KubeComputeFS embed.FS
+var fs embed.FS
 
 // Bootstrap creates resources in this package by continuously retrying the list.
 // This is blocking, i.e. it only returns (with error) when the context is closed or with nil when
 // the bootstrapping is successfully completed.
-// Note: Any change to the list of resources in the kubernetes apiexport has to be kept consistent with:
-//   - pkg/reconciler/workload/apiexport/workload_apiexport_reconcile.go
-func Bootstrap(ctx context.Context, discoveryClient discovery.DiscoveryInterface, dynamicClient dynamic.Interface, batteriesIncluded sets.Set[string]) error {
-	return confighelpers.Bootstrap(ctx, discoveryClient, dynamicClient, batteriesIncluded, KubeComputeFS)
+func Bootstrap(
+	ctx context.Context,
+	rootDiscoveryClient discovery.DiscoveryInterface,
+	rootDynamicClient dynamic.Interface,
+	homeWorkspaceCreatorGroups []string,
+	batteriesIncluded sets.Set[string],
+) error {
+	homeWorkspaceCreatorGroupReplacement := ""
+	for _, group := range homeWorkspaceCreatorGroups {
+		homeWorkspaceCreatorGroupReplacement += `
+ - apiGroup: rbac.authorization.k8s.io
+   kind: Group
+   name: ` + group
+	}
+	if homeWorkspaceCreatorGroupReplacement == "" {
+		homeWorkspaceCreatorGroupReplacement = "[]"
+	}
+
+	return confighelpers.Bootstrap(ctx, rootDiscoveryClient, rootDynamicClient, batteriesIncluded, fs, confighelpers.ReplaceOption(
+		"HOME_CREATOR_GROUPS", homeWorkspaceCreatorGroupReplacement,
+	))
 }

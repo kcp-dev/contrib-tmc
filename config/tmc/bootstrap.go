@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package rootcompute
+package tmc
 
 import (
 	"context"
@@ -28,14 +28,14 @@ import (
 	kcpapiextensionsclientset "k8s.io/apiextensions-apiserver/pkg/client/kcp/clientset/versioned"
 	"k8s.io/apimachinery/pkg/util/sets"
 
-	kube124 "github.com/kcp-dev/contrib-tmc/config/rootcompute/kube-1.24"
+	"github.com/kcp-dev/contrib-tmc/config/tmc/resources"
 )
 
 //go:embed *.yaml
 var fs embed.FS
 
-// RootComputeClusterName is the workspace to host common kubernetes APIs.
-var RootComputeClusterName = logicalcluster.NewPath("root:compute")
+// RootTMCClusterName is the workspace to host common tmc APIs.
+var RootTMCClusterName = logicalcluster.NewPath("root:tmc")
 
 // Bootstrap creates resources in this package by continuously retrying the list.
 // This is blocking, i.e. it only returns (with error) when the context is closed or with nil when
@@ -47,8 +47,8 @@ func Bootstrap(ctx context.Context, apiExtensionClusterClient kcpapiextensionscl
 		return err
 	}
 
-	computeDiscoveryClient := apiExtensionClusterClient.Cluster(RootComputeClusterName).Discovery()
-	computeDynamicClient := dynamicClusterClient.Cluster(RootComputeClusterName)
+	computeDiscoveryClient := apiExtensionClusterClient.Cluster(RootTMCClusterName).Discovery()
+	computeDynamicClient := dynamicClusterClient.Cluster(RootTMCClusterName)
 
-	return kube124.Bootstrap(ctx, computeDiscoveryClient, computeDynamicClient, batteriesIncluded)
+	return resources.Bootstrap(ctx, computeDiscoveryClient, computeDynamicClient, batteriesIncluded)
 }

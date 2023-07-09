@@ -2,9 +2,8 @@ apiVersion: apis.kcp.io/v1alpha1
 kind: APIExport
 metadata:
   creationTimestamp: null
-  name: scheduling.kcp.io
+  name: workload.kcp.io
 spec:
   latestResourceSchemas:
-  - v230611-7d44188.locations.scheduling.kcp.io
-  - v230611-7d44188.placements.scheduling.kcp.io
+  - v230618-0f88c5d.synctargets.workload.kcp.io
 status: {}
