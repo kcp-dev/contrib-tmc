@@ -23,6 +23,7 @@ import (
 	"os"
 	"time"
 
+	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/spf13/cobra"
 
@@ -33,10 +34,8 @@ import (
 	"k8s.io/component-base/version"
 	"k8s.io/klog/v2"
 
-	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
-
-	synceroptions "github.com/faroshq/tmc/cmd/syncer/options"
-	"github.com/faroshq/tmc/pkg/syncer"
+	synceroptions "github.com/kcp-dev/contrib-tmc/cmd/syncer/options"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer"
 )
 
 const numThreads = 2

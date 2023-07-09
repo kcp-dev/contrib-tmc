@@ -22,14 +22,13 @@ import (
 	"strings"
 	"time"
 
+	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
 	"github.com/spf13/pflag"
 
 	"k8s.io/component-base/logs"
 	logsapiv1 "k8s.io/component-base/logs/api/v1"
 
-	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
-
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 type Options struct {

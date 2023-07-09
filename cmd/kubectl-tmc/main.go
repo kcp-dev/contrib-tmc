@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The KCP Authors.
+Copyright 2022 The KCP Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,16 +17,21 @@ limitations under the License.
 package main
 
 import (
+	"fmt"
 	"os"
 
-	"k8s.io/component-base/cli"
-	_ "k8s.io/component-base/logs/json/register"
+	"github.com/spf13/pflag"
 
-	"github.com/kcp-dev/contrib-tmc/cmd/syncer/cmd"
+	"github.com/kcp-dev/contrib-tmc/cmd/kubectl-tmc/cmd"
 )
 
 func main() {
-	syncerCommand := cmd.NewSyncerCommand()
-	code := cli.Run(syncerCommand)
-	os.Exit(code)
+	flags := pflag.NewFlagSet("kubectl-tmc", pflag.ExitOnError)
+	pflag.CommandLine = flags
+
+	cmd := cmd.KubectlTmcCommand()
+	if err := cmd.Execute(); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
+	}
 }

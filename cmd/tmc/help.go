@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The KCP Authors.
+Copyright 2022 The KCP Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,17 +16,6 @@ limitations under the License.
 
 package main
 
-import (
-	"os"
-
-	"k8s.io/component-base/cli"
-	_ "k8s.io/component-base/logs/json/register"
-
-	"github.com/kcp-dev/contrib-tmc/cmd/syncer/cmd"
+const (
+	usageFmt = "Usage:\n  %s\n"
 )
-
-func main() {
-	syncerCommand := cmd.NewSyncerCommand()
-	code := cli.Run(syncerCommand)
-	os.Exit(code)
-}

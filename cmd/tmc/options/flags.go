@@ -1,5 +1,5 @@
 /*
-Copyright 2021 The KCP Authors.
+Copyright 2023 The KCP Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,19 +14,28 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package options
 
-import (
-	"os"
-
-	"k8s.io/component-base/cli"
-	_ "k8s.io/component-base/logs/json/register"
-
-	"github.com/kcp-dev/contrib-tmc/cmd/syncer/cmd"
+var (
+	namedFlagSetOrder = []string{
+		"auditing",
+		"authentication",
+		"etcd",
+		"Embedded etcd",
+		"features",
+		"generic",
+		"logs",
+		"metrics",
+		"misc",
+		"secure serving",
+		"traces",
+		"KCP Authentication",
+		"KCP Authorization",
+		"KCP Virtual Workspaces",
+		"KCP Controllers",
+		"KCP Home Workspaces",
+		"KCP Cache Server",
+		"KCP",
+		"TMC Controllers",
+	}
 )
-
-func main() {
-	syncerCommand := cmd.NewSyncerCommand()
-	code := cli.Run(syncerCommand)
-	os.Exit(code)
-}
