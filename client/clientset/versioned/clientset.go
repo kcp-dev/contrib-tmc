@@ -26,8 +26,8 @@ import (
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
 )
 
 type Interface interface {

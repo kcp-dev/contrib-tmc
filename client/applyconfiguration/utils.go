@@ -28,16 +28,16 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	apiextensionsv1 "github.com/faroshq/tmc/client/applyconfiguration/apiextensions/v1"
-	apiresourcev1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/apiresource/v1alpha1"
-	applyconfigurationapisv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/apis/v1alpha1"
-	applyconfigurationconditionsv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/conditions/v1alpha1"
-	applyconfigurationcorev1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/core/v1alpha1"
-	applyconfigurationmetav1 "github.com/faroshq/tmc/client/applyconfiguration/meta/v1"
-	applyconfigurationschedulingv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/scheduling/v1alpha1"
-	applyconfigurationworkloadv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/workload/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	apiextensionsv1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apiextensions/v1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apiresource/v1alpha1"
+	applyconfigurationapisv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apis/v1alpha1"
+	applyconfigurationconditionsv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/conditions/v1alpha1"
+	applyconfigurationcorev1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/core/v1alpha1"
+	applyconfigurationmetav1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/meta/v1"
+	applyconfigurationschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/scheduling/v1alpha1"
+	applyconfigurationworkloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/workload/v1alpha1"
 )
 
 // ForKind returns an apply configuration type for the given GroupVersionKind, or nil if no

@@ -22,7 +22,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	types "k8s.io/apimachinery/pkg/types"
 
-	v1 "github.com/faroshq/tmc/client/applyconfiguration/meta/v1"
+	v1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/meta/v1"
 )
 
 // CustomResourceDefinitionApplyConfiguration represents an declarative configuration of the CustomResourceDefinition type for use

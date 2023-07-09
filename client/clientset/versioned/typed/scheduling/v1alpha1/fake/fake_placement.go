@@ -30,8 +30,8 @@ import (
 	watch "k8s.io/apimachinery/pkg/watch"
 	testing "k8s.io/client-go/testing"
 
-	v1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/scheduling/v1alpha1"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/scheduling/v1alpha1"
 )
 
 // FakePlacements implements PlacementInterface

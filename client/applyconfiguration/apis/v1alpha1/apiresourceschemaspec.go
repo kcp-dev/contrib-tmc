@@ -21,7 +21,7 @@ package v1alpha1
 import (
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 
-	v1 "github.com/faroshq/tmc/client/applyconfiguration/apiextensions/v1"
+	v1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apiextensions/v1"
 )
 
 // APIResourceSchemaSpecApplyConfiguration represents an declarative configuration of the APIResourceSchemaSpec type for use

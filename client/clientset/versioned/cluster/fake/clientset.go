@@ -29,15 +29,15 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/discovery"
 
-	client "github.com/faroshq/tmc/client/clientset/versioned"
-	kcpclient "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	kcpschedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
-	fakeschedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1/fake"
-	kcpworkloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
-	fakeworkloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1/fake"
-	clientscheme "github.com/faroshq/tmc/client/clientset/versioned/scheme"
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1"
+	client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	kcpclient "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	kcpschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
+	fakeschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1/fake"
+	kcpworkloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
+	fakeworkloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1/fake"
+	clientscheme "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/scheme"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
 )
 
 // NewSimpleClientset returns a clientset that will respond with the provided objects.

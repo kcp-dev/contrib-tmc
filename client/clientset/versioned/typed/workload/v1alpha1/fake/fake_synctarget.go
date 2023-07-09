@@ -30,8 +30,8 @@ import (
 	watch "k8s.io/apimachinery/pkg/watch"
 	testing "k8s.io/client-go/testing"
 
-	v1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/workload/v1alpha1"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/workload/v1alpha1"
 )
 
 // FakeSyncTargets implements SyncTargetInterface

@@ -23,8 +23,8 @@ import (
 
 	rest "k8s.io/client-go/rest"
 
-	v1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/faroshq/tmc/client/clientset/versioned/scheme"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/client/clientset/versioned/scheme"
 )
 
 type WorkloadV1alpha1Interface interface {

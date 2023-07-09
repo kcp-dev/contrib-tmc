@@ -24,7 +24,7 @@ import (
 	v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 
-	apiextensionsv1 "github.com/faroshq/tmc/client/applyconfiguration/apiextensions/v1"
+	apiextensionsv1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apiextensions/v1"
 )
 
 // CommonAPIResourceSpecApplyConfiguration represents an declarative configuration of the CommonAPIResourceSpec type for use

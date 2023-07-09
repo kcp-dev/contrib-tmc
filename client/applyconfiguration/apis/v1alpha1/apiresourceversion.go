@@ -21,7 +21,7 @@ package v1alpha1
 import (
 	runtime "k8s.io/apimachinery/pkg/runtime"
 
-	v1 "github.com/faroshq/tmc/client/applyconfiguration/apiextensions/v1"
+	v1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apiextensions/v1"
 )
 
 // APIResourceVersionApplyConfiguration represents an declarative configuration of the APIResourceVersion type for use

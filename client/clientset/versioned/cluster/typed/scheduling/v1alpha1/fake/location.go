@@ -36,9 +36,9 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/testing"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	applyconfigurationsschedulingv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/scheduling/v1alpha1"
-	schedulingv1alpha1client "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	applyconfigurationsschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/scheduling/v1alpha1"
+	schedulingv1alpha1client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
 )
 
 var locationsResource = schema.GroupVersionResource{Group: "scheduling.kcp.io", Version: "v1alpha1", Resource: "locations"}

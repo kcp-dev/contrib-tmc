@@ -22,8 +22,8 @@ limitations under the License.
 package scheduling
 
 import (
-	"github.com/faroshq/tmc/client/informers/externalversions/internalinterfaces"
-	"github.com/faroshq/tmc/client/informers/externalversions/scheduling/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/client/informers/externalversions/internalinterfaces"
+	"github.com/kcp-dev/contrib-tmc/client/informers/externalversions/scheduling/v1alpha1"
 )
 
 type ClusterInterface interface {

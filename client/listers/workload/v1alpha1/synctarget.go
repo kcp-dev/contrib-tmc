@@ -29,7 +29,7 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/tools/cache"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 // SyncTargetClusterLister can list SyncTargets across all workspaces, or scope down to a SyncTargetLister for one workspace.

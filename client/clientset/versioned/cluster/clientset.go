@@ -32,9 +32,9 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/util/flowcontrol"
 
-	client "github.com/faroshq/tmc/client/clientset/versioned"
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
+	client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
 )
 
 type ClusterInterface interface {

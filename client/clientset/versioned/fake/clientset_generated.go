@@ -25,11 +25,11 @@ import (
 	fakediscovery "k8s.io/client-go/discovery/fake"
 	"k8s.io/client-go/testing"
 
-	clientset "github.com/faroshq/tmc/client/clientset/versioned"
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
-	fakeschedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1/fake"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1"
-	fakeworkloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1/fake"
+	clientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	fakeschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1/fake"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
+	fakeworkloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1/fake"
 )
 
 // NewSimpleClientset returns a clientset that will respond with the provided objects.
