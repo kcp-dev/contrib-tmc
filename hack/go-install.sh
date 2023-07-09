@@ -60,8 +60,7 @@ go mod init fake/mod
 
 # install the golang module specified as the first argument
 echo "go install -tags tools \"${1}@${3}\""
-if [[ "${1}" != "github.com/kcp-dev/kcp/sdk/cmd/apigen" ]]; then # remove once this is done
-  go install -tags tools "${1}@${3}"
-  mv "${GOBIN}/${2}" "${GOBIN}/${2}-${3}"
-  ln -sf "${GOBIN}/${2}-${3}" "${GOBIN}/${2}"
-fi
+go install -tags tools "${1}@${3}"
+mv "${GOBIN}/${2}" "${GOBIN}/${2}-${3}"
+ln -sf "${GOBIN}/${2}-${3}" "${GOBIN}/${2}"
+
