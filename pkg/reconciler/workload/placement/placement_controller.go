@@ -24,7 +24,6 @@ import (
 
 	"github.com/go-logr/logr"
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
-	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/committer"
 	"github.com/kcp-dev/kcp/pkg/indexers"
 	"github.com/kcp-dev/kcp/pkg/logging"
 	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
@@ -53,6 +52,7 @@ import (
 	workloadinformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
 	schedulingv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/scheduling/v1alpha1"
 	workloadv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/committer"
 )
 
 const (

@@ -155,9 +155,8 @@ imports: $(OPENSHIFT_GOIMPORTS)
 all: build
 .PHONY: all
 
-build: WHAT ?= ./cmd/...
 build: require-jq require-go require-git
-	GOOS=$(OS) GOARCH=$(ARCH) CGO_ENABLED=0 go build $(BUILDFLAGS) -ldflags="$(LDFLAGS)" -o bin $(WHAT)
+	GOOS=$(OS) GOARCH=$(ARCH) CGO_ENABLED=0 go build $(BUILDFLAGS) -ldflags="$(LDFLAGS)" -o bin ./cmd/...
 	echo "To use the binaries, add them to your PATH."
 	export PATH=$$PATH:$(PWD)/bin
 .PHONY: build

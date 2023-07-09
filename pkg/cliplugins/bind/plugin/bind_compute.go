@@ -23,6 +23,12 @@ import (
 	"strings"
 	"time"
 
+	"github.com/kcp-dev/kcp/pkg/cliplugins/base"
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	"github.com/kcp-dev/kcp/sdk/apis/core"
+	corev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1"
+	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
+	kcpclient "github.com/kcp-dev/kcp/sdk/client/clientset/versioned"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/martinlindhe/base36"
 	"github.com/spf13/cobra"
@@ -38,12 +44,6 @@ import (
 
 	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
 	tmcclient "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
-	"github.com/kcp-dev/kcp/pkg/cliplugins/base"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
-	"github.com/kcp-dev/kcp/sdk/apis/core"
-	corev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1"
-	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
-	kcpclient "github.com/kcp-dev/kcp/sdk/client/clientset/versioned"
 )
 
 type BindComputeOptions struct {

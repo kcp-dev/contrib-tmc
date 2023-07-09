@@ -159,7 +159,8 @@ func generatePatchAndSubResources[Sp any, St any](old, obj *Resource[Sp, St]) ([
 	}
 
 	var subresources []string
-	//if statusChanged { // https://github.com/kcp-dev/contrib-tmc/issues/1
+	// https://github.com/kcp-dev/contrib-tmc/issues/1
+	// if statusChanged {
 	//	subresources = []string{"status"}
 	//}
 

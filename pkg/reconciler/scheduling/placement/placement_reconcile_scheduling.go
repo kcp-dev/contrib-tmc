@@ -42,11 +42,11 @@ func (r *placementReconciler) reconcile(ctx context.Context, placement *scheduli
 	var locationWorkspace logicalcluster.Path
 	// TODO(MJ): currently this disables the cross workspace placements. This is due to
 	// fact indexers are build ontop of logicalcluster paths and we use here the 'readable' paths
-	//if len(placement.Spec.LocationWorkspace) > 0 {
+	// if len(placement.Spec.LocationWorkspace) > 0 {
 	//	locationWorkspace = logicalcluster.NewPath(placement.Spec.LocationWorkspace)
-	//} else {
+	// } else {
 	locationWorkspace = logicalcluster.From(placement).Path()
-	//}
+	// }
 
 	locationWorkspace, validLocationNames, err := r.validLocationNames(placement, locationWorkspace)
 	if err != nil {
