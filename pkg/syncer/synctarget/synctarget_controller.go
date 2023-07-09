@@ -22,8 +22,8 @@ import (
 	"time"
 
 	"github.com/go-logr/logr"
+	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/committer"
 	"github.com/kcp-dev/kcp/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"

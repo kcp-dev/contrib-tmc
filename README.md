@@ -37,8 +37,6 @@ and extend its functionality to support multi-cluster workload management.
 # Create a workload on TMC-KCP cluster
 
   kubectl create deployment kuard --image gcr.io/kuar-demo/kuard-amd64:blue
-
-
 ```
 
 ## Background

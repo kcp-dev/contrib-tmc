@@ -24,9 +24,9 @@ import (
 
 	"github.com/go-logr/logr"
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
+	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/committer"
 	"github.com/kcp-dev/kcp/pkg/indexers"
 	"github.com/kcp-dev/kcp/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
 	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
 	"github.com/kcp-dev/kcp/sdk/apis/core"
 	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"

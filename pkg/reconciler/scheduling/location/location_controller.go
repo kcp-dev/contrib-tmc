@@ -22,8 +22,8 @@ import (
 	"time"
 
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
+	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/committer"
 	"github.com/kcp-dev/kcp/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/reconciler/committer"
 	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
 
 	"k8s.io/apimachinery/pkg/api/equality"
