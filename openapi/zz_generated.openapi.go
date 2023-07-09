@@ -31,24 +31,24 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel":                    schema_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource":                      schema_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Location":                                  schema_tmc_apis_scheduling_v1alpha1_Location(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationList":                              schema_tmc_apis_scheduling_v1alpha1_LocationList(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationReference":                         schema_tmc_apis_scheduling_v1alpha1_LocationReference(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationSpec":                              schema_tmc_apis_scheduling_v1alpha1_LocationSpec(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationStatus":                            schema_tmc_apis_scheduling_v1alpha1_LocationStatus(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Placement":                                 schema_tmc_apis_scheduling_v1alpha1_Placement(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementList":                             schema_tmc_apis_scheduling_v1alpha1_PlacementList(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementSpec":                             schema_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementStatus":                           schema_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.ResourceToSync":                              schema_tmc_apis_workload_v1alpha1_ResourceToSync(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTarget":                                  schema_tmc_apis_workload_v1alpha1_SyncTarget(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetList":                              schema_tmc_apis_workload_v1alpha1_SyncTargetList(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetSpec":                              schema_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetStatus":                            schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.TunnelWorkspace":                             schema_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.VirtualWorkspace":                            schema_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel":            schema_contrib_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource":              schema_contrib_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Location":                          schema_contrib_tmc_apis_scheduling_v1alpha1_Location(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationList":                      schema_contrib_tmc_apis_scheduling_v1alpha1_LocationList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationReference":                 schema_contrib_tmc_apis_scheduling_v1alpha1_LocationReference(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationSpec":                      schema_contrib_tmc_apis_scheduling_v1alpha1_LocationSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationStatus":                    schema_contrib_tmc_apis_scheduling_v1alpha1_LocationStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Placement":                         schema_contrib_tmc_apis_scheduling_v1alpha1_Placement(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementList":                     schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementSpec":                     schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementStatus":                   schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.ResourceToSync":                      schema_contrib_tmc_apis_workload_v1alpha1_ResourceToSync(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTarget":                          schema_contrib_tmc_apis_workload_v1alpha1_SyncTarget(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetList":                      schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetSpec":                      schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetStatus":                    schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.TunnelWorkspace":                     schema_contrib_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.VirtualWorkspace":                    schema_contrib_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref),
 		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImport":                    schema_sdk_apis_apiresource_v1alpha1_APIResourceImport(ref),
 		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportCondition":           schema_sdk_apis_apiresource_v1alpha1_APIResourceImportCondition(ref),
 		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportList":                schema_sdk_apis_apiresource_v1alpha1_APIResourceImportList(ref),
@@ -162,7 +162,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -211,7 +211,7 @@ func schema_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref common.Refer
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -248,7 +248,7 @@ func schema_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref common.Referen
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_Location(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_Location(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -278,24 +278,24 @@ func schema_tmc_apis_scheduling_v1alpha1_Location(ref common.ReferenceCallback) 
 					"spec": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationSpec"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationStatus"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationSpec", "github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationSpec", "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_LocationList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationList(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -329,7 +329,7 @@ func schema_tmc_apis_scheduling_v1alpha1_LocationList(ref common.ReferenceCallba
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.Location"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Location"),
 									},
 								},
 							},
@@ -340,11 +340,11 @@ func schema_tmc_apis_scheduling_v1alpha1_LocationList(ref common.ReferenceCallba
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Location", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Location", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_LocationReference(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationReference(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -374,7 +374,7 @@ func schema_tmc_apis_scheduling_v1alpha1_LocationReference(ref common.ReferenceC
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_LocationSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -385,7 +385,7 @@ func schema_tmc_apis_scheduling_v1alpha1_LocationSpec(ref common.ReferenceCallba
 						SchemaProps: spec.SchemaProps{
 							Description: "resource is the group-version-resource of the instances that are subject to this location.",
 							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
 						},
 					},
 					"description": {
@@ -411,7 +411,7 @@ func schema_tmc_apis_scheduling_v1alpha1_LocationSpec(ref common.ReferenceCallba
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel"),
 									},
 								},
 							},
@@ -428,11 +428,11 @@ func schema_tmc_apis_scheduling_v1alpha1_LocationSpec(ref common.ReferenceCallba
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel", "github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel", "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_LocationStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -459,7 +459,7 @@ func schema_tmc_apis_scheduling_v1alpha1_LocationStatus(ref common.ReferenceCall
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_Placement(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_Placement(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -489,24 +489,24 @@ func schema_tmc_apis_scheduling_v1alpha1_Placement(ref common.ReferenceCallback)
 					"spec": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementSpec"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementStatus"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementSpec", "github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementSpec", "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_PlacementList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementList(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -540,7 +540,7 @@ func schema_tmc_apis_scheduling_v1alpha1_PlacementList(ref common.ReferenceCallb
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.Placement"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Placement"),
 									},
 								},
 							},
@@ -551,11 +551,11 @@ func schema_tmc_apis_scheduling_v1alpha1_PlacementList(ref common.ReferenceCallb
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Placement", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Placement", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -579,7 +579,7 @@ func schema_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref common.ReferenceCallb
 						SchemaProps: spec.SchemaProps{
 							Description: "locationResource is the group-version-resource of the instances that are subject to the locations to select.",
 							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
 						},
 					},
 					"namespaceSelector": {
@@ -600,11 +600,11 @@ func schema_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref common.ReferenceCallb
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -620,7 +620,7 @@ func schema_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref common.ReferenceCal
 					"selectedLocation": {
 						SchemaProps: spec.SchemaProps{
 							Description: "selectedLocation is the location that a picked by this placement.",
-							Ref:         ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationReference"),
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationReference"),
 						},
 					},
 					"conditions": {
@@ -641,11 +641,11 @@ func schema_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref common.ReferenceCal
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationReference", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"},
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationReference", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"},
 	}
 }
 
-func schema_tmc_apis_workload_v1alpha1_ResourceToSync(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_workload_v1alpha1_ResourceToSync(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -688,7 +688,7 @@ func schema_tmc_apis_workload_v1alpha1_ResourceToSync(ref common.ReferenceCallba
 	}
 }
 
-func schema_tmc_apis_workload_v1alpha1_SyncTarget(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTarget(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -719,25 +719,25 @@ func schema_tmc_apis_workload_v1alpha1_SyncTarget(ref common.ReferenceCallback) 
 						SchemaProps: spec.SchemaProps{
 							Description: "Spec holds the desired state.",
 							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetSpec"),
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
 							Description: "Status communicates the observed state.",
 							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetStatus"),
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetSpec", "github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetSpec", "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_tmc_apis_workload_v1alpha1_SyncTargetList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetList(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -771,7 +771,7 @@ func schema_tmc_apis_workload_v1alpha1_SyncTargetList(ref common.ReferenceCallba
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTarget"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTarget"),
 									},
 								},
 							},
@@ -782,11 +782,11 @@ func schema_tmc_apis_workload_v1alpha1_SyncTargetList(ref common.ReferenceCallba
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTarget", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTarget", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 
-func schema_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -845,7 +845,7 @@ func schema_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref common.ReferenceCallba
 	}
 }
 
-func schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -904,7 +904,7 @@ func schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCall
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.ResourceToSync"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.ResourceToSync"),
 									},
 								},
 							},
@@ -924,7 +924,7 @@ func schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCall
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.VirtualWorkspace"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.VirtualWorkspace"),
 									},
 								},
 							},
@@ -938,7 +938,7 @@ func schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCall
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.TunnelWorkspace"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.TunnelWorkspace"),
 									},
 								},
 							},
@@ -948,11 +948,11 @@ func schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCall
 			},
 		},
 		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/workload/v1alpha1.ResourceToSync", "github.com/faroshq/tmc/apis/workload/v1alpha1.TunnelWorkspace", "github.com/faroshq/tmc/apis/workload/v1alpha1.VirtualWorkspace", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition", "k8s.io/apimachinery/pkg/api/resource.Quantity", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
+			"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.ResourceToSync", "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.TunnelWorkspace", "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.VirtualWorkspace", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition", "k8s.io/apimachinery/pkg/api/resource.Quantity", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
 	}
 }
 
-func schema_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -973,7 +973,7 @@ func schema_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref common.ReferenceCallb
 	}
 }
 
-func schema_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
