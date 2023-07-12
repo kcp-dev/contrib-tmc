@@ -46,7 +46,7 @@ import (
 	workloadv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
 )
 
-const ControllerName = "kcp-synctarget-controller"
+const ControllerName = "tmc-synctarget-controller"
 
 func NewController(
 	kcpClusterClient kcpclientset.ClusterInterface,

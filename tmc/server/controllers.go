@@ -25,11 +25,14 @@ import (
 	kcpkubernetesclientset "github.com/kcp-dev/client-go/kubernetes"
 	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
 
+	kcpapiextensionsclientset "k8s.io/apiextensions-apiserver/pkg/client/kcp/clientset/versioned"
+	kcpapiextensionsinformers "k8s.io/apiextensions-apiserver/pkg/client/kcp/informers/externalversions"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	"k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
 
 	tmcclusterclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/apiresource"
 	schedulinglocationstatus "github.com/kcp-dev/contrib-tmc/pkg/reconciler/scheduling/location"
 	schedulingplacement "github.com/kcp-dev/contrib-tmc/pkg/reconciler/scheduling/placement"
 	workloadsapiexport "github.com/kcp-dev/contrib-tmc/pkg/reconciler/workload/apiexport"
@@ -76,6 +79,57 @@ func (s *Server) installWorkloadResourceScheduler(ctx context.Context) error {
 		}
 
 		go resourceScheduler.Start(ctx, 2)
+		return nil
+	})
+}
+
+func (s *Server) installApiResourceController(ctx context.Context) error {
+	config := rest.CopyConfig(s.Core.IdentityConfig)
+	config = rest.AddUserAgent(config, heartbeat.ControllerName)
+
+	kcpClusterClient, err := kcpclientset.NewForConfig(config)
+	if err != nil {
+		return err
+	}
+
+	crdClusterClient, err := kcpapiextensionsclientset.NewForConfig(config)
+	if err != nil {
+		return err
+	}
+
+	cfg := rest.CopyConfig(s.Core.GenericConfig.LoopbackClientConfig)
+	tmcclusterclientset, err := tmcclusterclientset.NewForConfig(cfg)
+	if err != nil {
+		return err
+	}
+
+	crdSharedInformerFactory := kcpapiextensionsinformers.NewSharedInformerFactoryWithOptions(crdClusterClient, resyncPeriod)
+
+	c, err := apiresource.NewController(
+		crdClusterClient,
+		kcpClusterClient,
+		tmcclusterclientset,
+		s.TmcSharedInformerFactory.Apiresource().V1alpha1().NegotiatedAPIResources(),
+		s.TmcSharedInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
+		crdSharedInformerFactory.Apiextensions().V1().CustomResourceDefinitions(),
+	)
+	if err != nil {
+		return err
+	}
+
+	return s.Core.AddPostStartHook(postStartHookName(apiresource.ControllerName), func(hookContext genericapiserver.PostStartHookContext) error {
+		logger := klog.FromContext(ctx).WithValues("postStartHook", postStartHookName(apiresource.ControllerName))
+		if err := s.WaitForSyncPhase2(hookContext.StopCh); err != nil {
+			logger.Error(err, "failed to finish post-start-hook")
+			return nil // don't klog.Fatal. This only happens when context is cancelled.
+		}
+
+		crdSharedInformerFactory.Start(ctx.Done())
+
+		crdSharedInformerFactory.WaitForCacheSync(ctx.Done())
+
+		go c.Start(ctx, 2)
+
 		return nil
 	})
 }
@@ -217,7 +271,7 @@ func (s *Server) installWorkloadSyncTargetExportController(ctx context.Context) 
 		s.Core.CacheKcpSharedInformerFactory.Apis().V1alpha1().APIExports(),
 		s.Core.KcpSharedInformerFactory.Apis().V1alpha1().APIResourceSchemas(),
 		s.Core.CacheKcpSharedInformerFactory.Apis().V1alpha1().APIResourceSchemas(),
-		s.Core.KcpSharedInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
+		s.TmcSharedInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
 	)
 	if err != nil {
 		return err
@@ -443,7 +497,7 @@ func (s *Server) installWorkloadAPIExportController(ctx context.Context) error {
 		kcpClusterClient,
 		s.Core.KcpSharedInformerFactory.Apis().V1alpha1().APIExports(),
 		s.Core.KcpSharedInformerFactory.Apis().V1alpha1().APIResourceSchemas(),
-		s.Core.KcpSharedInformerFactory.Apiresource().V1alpha1().NegotiatedAPIResources(),
+		s.TmcSharedInformerFactory.Apiresource().V1alpha1().NegotiatedAPIResources(),
 		s.TmcSharedInformerFactory.Workload().V1alpha1().SyncTargets(),
 	)
 	if err != nil {

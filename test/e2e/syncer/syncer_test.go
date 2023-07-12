@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/google/go-cmp/cmp"
 	kcpkubernetesclientset "github.com/kcp-dev/client-go/kubernetes"
-	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
 	kubefixtures "github.com/kcp-dev/kcp/test/e2e/fixtures/kube"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/stretchr/testify/require"
@@ -91,14 +91,15 @@ func TestSyncerLifecycle(t *testing.T) {
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	t.Cleanup(cancelFunc)
 
-	kcpClient, err := kcpclientset.NewForConfig(upstreamServer.BaseConfig(t))
+	tmcClient, err := tmcclientset.NewForConfig(upstreamServer.BaseConfig(t))
 	require.NoError(t, err)
 	t.Logf("Waiting for negotiaged api to be generated...")
 	require.Eventually(t, func() bool {
-		negotiatedAPIs, err := kcpClient.Cluster(wsPath).ApiresourceV1alpha1().NegotiatedAPIResources().List(ctx, metav1.ListOptions{})
+		negotiatedAPIs, err := tmcClient.Cluster(wsPath).ApiresourceV1alpha1().NegotiatedAPIResources().List(ctx, metav1.ListOptions{})
 		if err != nil {
 			return false
 		}
+		spew.Dump(negotiatedAPIs)
 		return len(negotiatedAPIs.Items) > 0
 	}, wait.ForeverTestTimeout, time.Millisecond*100, "negotiaged apis are not generated")
 

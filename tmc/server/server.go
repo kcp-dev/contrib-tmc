@@ -170,6 +170,9 @@ func (s *Server) Run(ctx context.Context) error {
 	}
 
 	// TODO(marun) Consider enabling each controller via a separate flag
+	if err := s.installApiResourceController(ctx); err != nil {
+		return err
+	}
 	if err := s.installSyncTargetHeartbeatController(ctx); err != nil {
 		return err
 	}

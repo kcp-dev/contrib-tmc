@@ -128,7 +128,7 @@ func newWorkspaceFixture[O WorkspaceOption](t *testing.T, createClusterClient, c
 		},
 		Spec: tenancyv1alpha1.WorkspaceSpec{
 			Type: tenancyv1alpha1.WorkspaceTypeReference{
-				Name: tenancyv1alpha1.WorkspaceTypeName("universal"),
+				Name: tenancyv1alpha1.WorkspaceTypeName("tmc"),
 				Path: "root",
 			},
 		},

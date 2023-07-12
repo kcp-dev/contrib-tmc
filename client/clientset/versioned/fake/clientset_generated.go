@@ -26,6 +26,8 @@ import (
 	"k8s.io/client-go/testing"
 
 	clientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/apiresource/v1alpha1"
+	fakeapiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/apiresource/v1alpha1/fake"
 	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
 	fakeschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1/fake"
 	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
@@ -81,6 +83,11 @@ var (
 	_ clientset.Interface = &Clientset{}
 	_ testing.FakeClient  = &Clientset{}
 )
+
+// ApiresourceV1alpha1 retrieves the ApiresourceV1alpha1Client
+func (c *Clientset) ApiresourceV1alpha1() apiresourcev1alpha1.ApiresourceV1alpha1Interface {
+	return &fakeapiresourcev1alpha1.FakeApiresourceV1alpha1{Fake: &c.Fake}
+}
 
 // SchedulingV1alpha1 retrieves the SchedulingV1alpha1Client
 func (c *Clientset) SchedulingV1alpha1() schedulingv1alpha1.SchedulingV1alpha1Interface {

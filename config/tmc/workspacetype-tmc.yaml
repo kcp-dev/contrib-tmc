@@ -12,6 +12,8 @@ spec:
     export: scheduling.kcp.io
   - path: root:tmc
     export: workload.kcp.io
+  - path: root:tmc
+    export: apiresource.kcp.io
   defaultChildren:
     types:
     - name: tmc

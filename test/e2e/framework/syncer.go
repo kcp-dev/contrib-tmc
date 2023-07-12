@@ -26,7 +26,7 @@ import (
 	"time"
 
 	kcpdynamic "github.com/kcp-dev/client-go/dynamic"
-	apiresourcev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	tenancyv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1"
 	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
 	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
@@ -663,15 +663,18 @@ func (sf *appliedSyncerFixture) StartAPIImporter(t *testing.T) *appliedSyncerFix
 		},
 	))
 	kcpImporterInformerFactory := kcpinformers.NewSharedScopedInformerFactoryWithOptions(kcpSyncTargetClient, 10*time.Hour)
+	tmcImporterInformerFactory := tmcinformers.NewSharedScopedInformerFactoryWithOptions(tmcSyncTargetClient, 10*time.Hour)
 	apiImporter, err := syncer.NewAPIImporter(
 		sf.SyncerConfig.UpstreamConfig, sf.SyncerConfig.DownstreamConfig,
 		tmcSyncTargetInformerFactory.Workload().V1alpha1().SyncTargets(),
-		kcpImporterInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
+		tmcImporterInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
 		resources,
 		sf.SyncerConfig.SyncTargetPath, sf.SyncerConfig.SyncTargetName, types.UID(sf.SyncerConfig.SyncTargetUID))
 	require.NoError(t, err)
 
 	kcpImporterInformerFactory.Start(ctx.Done())
+	tmcImporterInformerFactory.Start(ctx.Done())
+
 	tmcSyncTargetInformerFactory.Start(ctx.Done())
 	tmcSyncTargetInformerFactory.WaitForCacheSync(ctx.Done())
 

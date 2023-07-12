@@ -28,7 +28,7 @@ and extend its functionality to support multi-cluster workload management.
 
 # Bind compute resources
 
-  kubectl kcp bind compute root:tmc-ws
+  kubectl tmc bind compute root:tmc-ws
 
 # Login into child cluster
 
