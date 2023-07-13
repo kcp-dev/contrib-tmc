@@ -29,7 +29,7 @@ func main() {
 	flags := pflag.NewFlagSet("kubectl-tmc", pflag.ExitOnError)
 	pflag.CommandLine = flags
 
-	cmd := cmd.KubectlTmcCommand()
+	cmd := cmd.KubectlTMCCommand()
 	if err := cmd.Execute(); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)

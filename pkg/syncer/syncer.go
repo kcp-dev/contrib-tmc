@@ -151,16 +151,18 @@ func StartSyncer(ctx context.Context, cfg *SyncerConfig, numSyncerThreads int, i
 	// TODO(qiujian16) make starting apiimporter optional after we check compatibility of supported APIExports
 	// of synctarget in syncer rather than in server.
 	kcpImporterInformerFactory := kcpinformers.NewSharedScopedInformerFactoryWithOptions(kcpSyncTargetClient, resyncPeriod)
+	tmcImprterInformerFactory := tmcinformers.NewSharedScopedInformerFactoryWithOptions(tmcSyncTargetClient, resyncPeriod)
 	apiImporter, err := NewAPIImporter(
 		cfg.UpstreamConfig, cfg.DownstreamConfig,
 		tmcSyncTargetInformerFactory.Workload().V1alpha1().SyncTargets(),
-		kcpImporterInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
+		tmcSyncTargetInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
 		resources,
 		cfg.SyncTargetPath, cfg.SyncTargetName, syncTarget.GetUID())
 	if err != nil {
 		return err
 	}
 	kcpImporterInformerFactory.Start(ctx.Done())
+	tmcImprterInformerFactory.Start(ctx.Done())
 
 	downstreamConfig := rest.CopyConfig(cfg.DownstreamConfig)
 	rest.AddUserAgent(downstreamConfig, "kcp#status-syncer/"+kcpVersion)

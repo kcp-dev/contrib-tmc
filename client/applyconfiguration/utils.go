@@ -19,7 +19,6 @@ limitations under the License.
 package applyconfiguration
 
 import (
-	v1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
 	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
 	corev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1"
 	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
@@ -28,6 +27,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
 	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 	apiextensionsv1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apiextensions/v1"

@@ -35,7 +35,7 @@ import (
 	workloadcmd "github.com/kcp-dev/contrib-tmc/pkg/cliplugins/workload/cmd"
 )
 
-func KubectlTmcCommand() *cobra.Command {
+func KubectlTMCCommand() *cobra.Command {
 	root := &cobra.Command{
 		Use:   "tmc",
 		Short: "kubectl plugin for KCP-TMC",

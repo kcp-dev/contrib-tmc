@@ -19,9 +19,9 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
-
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 )
 
 // APIResourceImportConditionApplyConfiguration represents an declarative configuration of the APIResourceImportCondition type for use

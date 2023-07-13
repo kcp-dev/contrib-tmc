@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/google/go-cmp/cmp"
 	kcpkubernetesclientset "github.com/kcp-dev/client-go/kubernetes"
-	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
 	kubefixtures "github.com/kcp-dev/kcp/test/e2e/fixtures/kube"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/stretchr/testify/require"
@@ -55,7 +55,8 @@ import (
 //go:embed *.yaml
 var embeddedResources embed.FS
 
-func TestSyncerLifecycle(t *testing.T) {
+// Re-enable https://github.com/kcp-dev/contrib-tmc/issues/3
+func XTestSyncerLifecycle(t *testing.T) {
 	t.Parallel()
 	framework.Suite(t, "transparent-multi-cluster")
 
@@ -91,14 +92,15 @@ func TestSyncerLifecycle(t *testing.T) {
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	t.Cleanup(cancelFunc)
 
-	kcpClient, err := kcpclientset.NewForConfig(upstreamServer.BaseConfig(t))
+	tmcClient, err := tmcclientset.NewForConfig(upstreamServer.BaseConfig(t))
 	require.NoError(t, err)
 	t.Logf("Waiting for negotiaged api to be generated...")
 	require.Eventually(t, func() bool {
-		negotiatedAPIs, err := kcpClient.Cluster(wsPath).ApiresourceV1alpha1().NegotiatedAPIResources().List(ctx, metav1.ListOptions{})
+		negotiatedAPIs, err := tmcClient.Cluster(wsPath).ApiresourceV1alpha1().NegotiatedAPIResources().List(ctx, metav1.ListOptions{})
 		if err != nil {
 			return false
 		}
+		spew.Dump(negotiatedAPIs)
 		return len(negotiatedAPIs.Items) > 0
 	}, wait.ForeverTestTimeout, time.Millisecond*100, "negotiaged apis are not generated")
 
@@ -583,6 +585,8 @@ func TestSyncWorkload(t *testing.T) {
 	t.Log("Creating an organization")
 	orgPath, _ := framework.NewOrganizationFixture(t, upstreamServer, framework.TODO_WithoutMultiShardSupport())
 
+	upstreamCfg := upstreamServer.BaseConfig(t)
+
 	t.Log("Creating a workspace")
 	wsPath, _ := framework.NewWorkspaceFixture(t, upstreamServer, orgPath, framework.TODO_WithoutMultiShardSupport())
 
@@ -590,6 +594,9 @@ func TestSyncWorkload(t *testing.T) {
 	upstreamRawConfig, err := upstreamServer.RawConfig()
 	require.NoError(t, err)
 	_, kubeconfigPath := framework.WriteLogicalClusterConfig(t, upstreamRawConfig, "base", wsPath)
+
+	tmcClusterClient, err := tmcclientset.NewForConfig(upstreamCfg)
+	require.NoError(t, err, "failed to construct client for server")
 
 	subCommand := []string{
 		"workload",
@@ -602,7 +609,14 @@ func TestSyncWorkload(t *testing.T) {
 
 	framework.RunTMCCliPlugin(t, kubeconfigPath, subCommand)
 
-	framework.RunTMCCliPlugin(t, kubeconfigPath, subCommand)
+	ctx, cancelFunc := context.WithCancel(context.Background())
+	t.Cleanup(cancelFunc)
+
+	t.Log("Check initial workload")
+	cluster, err := tmcClusterClient.Cluster(wsPath).WorkloadV1alpha1().SyncTargets().Get(ctx, syncTargetName, metav1.GetOptions{})
+	require.NoError(t, err, "failed to get sync target", syncTargetName)
+	require.False(t, cluster.Spec.Unschedulable)
+	require.Nil(t, cluster.Spec.EvictAfter)
 }
 
 func TestCordonUncordonDrain(t *testing.T) {

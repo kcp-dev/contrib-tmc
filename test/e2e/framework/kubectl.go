@@ -65,7 +65,7 @@ func RunTMCCliPlugin(t *testing.T, kubeconfigPath string, subcommand []string) [
 	cmd.Stderr = locked{mu: &lock, w: &combined}
 	err := cmd.Run()
 	if err != nil {
-		t.Logf("kcp plugin output:\n%s", combined.String())
+		t.Logf("tmc plugin output:\n%s", combined.String())
 	}
 	require.NoError(t, err, "error running kcp plugin command")
 	return output.Bytes()

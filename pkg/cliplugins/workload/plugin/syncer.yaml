@@ -56,6 +56,15 @@ rules:
   - "create"
   - "list"
   - "watch"
+- apiGroups:
+  - "apiresource.kcp.io"
+  resources:
+  - apiresourceimports
+  verbs:
+  - "create"
+  - "update"
+  - "list"
+  - "watch"
 {{- range $groupMapping := .GroupMappings}}
 - apiGroups:
   - "{{$groupMapping.APIGroup}}"
