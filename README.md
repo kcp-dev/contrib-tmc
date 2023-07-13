@@ -47,6 +47,11 @@ and extend its functionality to support multi-cluster workload management.
   kubectl create deployment kuard --image gcr.io/kuar-demo/kuard-amd64:blue
 ```
 
+## Known issues
+
+- [ ] TMC currently does not support sharding
+- [ ] Placements do not work cross-workspaces https://github.com/kcp-dev/contrib-tmc/issues/4
+
 ## Background
 
 https://github.com/kcp-dev/kcp/issues/2954
