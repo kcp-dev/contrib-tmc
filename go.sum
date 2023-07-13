@@ -337,10 +337,10 @@ github.com/kcp-dev/apimachinery/v2 v2.0.0-alpha.0.0.20230419125703-767ac05aebce 
 github.com/kcp-dev/apimachinery/v2 v2.0.0-alpha.0.0.20230419125703-767ac05aebce/go.mod h1:zjNivgz2FtvyUPPLNpx5yDxFoFHNQqFrP3FKKTSMvvw=
 github.com/kcp-dev/client-go v0.0.0-20230519100911-e16eb4c2bf18 h1:2DoPVFTfqQe9nq2msBs8oMhFxgsvGE6pOg15tqx9p28=
 github.com/kcp-dev/client-go v0.0.0-20230519100911-e16eb4c2bf18/go.mod h1:C4i5aU8Mufjgjjm+alv5c2hufNsMvO530Rq2sZ3KgHk=
-github.com/kcp-dev/kcp v0.20.0 h1:moauYc03yPtUrnh+/qlNHZvts5s/vS/Rde4imd5/5/I=
-github.com/kcp-dev/kcp v0.20.0/go.mod h1:/S//bktVUynMemLmxl3pw1PJ4ihrffgRzfscF8yE43A=
-github.com/kcp-dev/kcp/sdk v0.20.0 h1:wlqOmFmUWjYwDzQlazE5Ecdbsqpil27RvsHKn7kwPfQ=
-github.com/kcp-dev/kcp/sdk v0.20.0/go.mod h1:gJvzobKY5POI5AjYH+LI9CI19Cip6gwmdbsJ2kWXsfY=
+github.com/kcp-dev/kcp v0.0.0-20230711191019-8dd1a3f4e240 h1:DREIpjflfUdBGcJL/uFDrb0YSeFCH/6h5Eh9NNwpWfY=
+github.com/kcp-dev/kcp v0.0.0-20230711191019-8dd1a3f4e240/go.mod h1:/S//bktVUynMemLmxl3pw1PJ4ihrffgRzfscF8yE43A=
+github.com/kcp-dev/kcp/sdk v0.0.0-20230711191019-8dd1a3f4e240 h1:Qu3jRrjS7ss8hN9cwSporv64JpQqITpawr2E0rRdDAc=
+github.com/kcp-dev/kcp/sdk v0.0.0-20230711191019-8dd1a3f4e240/go.mod h1:gJvzobKY5POI5AjYH+LI9CI19Cip6gwmdbsJ2kWXsfY=
 github.com/kcp-dev/kubernetes v0.0.0-20230526104423-c790f4246d25 h1:7+OgdM7/fMeK6Obe7aRwSObgj80yUEuuIPKD8sUVfD8=
 github.com/kcp-dev/kubernetes v0.0.0-20230526104423-c790f4246d25/go.mod h1:nyJTa0Fiq+nOYp4Eb1EeuVNDu1HFyj7BqFOXqNsl0Ic=
 github.com/kcp-dev/kubernetes/staging/src/k8s.io/api v0.0.0-20230526104423-c790f4246d25 h1:nd2tAjYI8hvaTyNPAXW/hXzItlNrO5I1hEbcNbbeBHA=

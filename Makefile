@@ -15,7 +15,7 @@
 # We need bash for some conditional logic below.
 SHELL := /usr/bin/env bash -e
 
-REPO ?= quay.io/faroshq/tmc
+REPO ?= quay.io/kcp-dev/contrib-tmc
 KO_DOCKER_REPO ?= ${REPO}
 
 GO_INSTALL = ./hack/go-install.sh

@@ -14,6 +14,14 @@ and extend its functionality to support multi-cluster workload management.
 
   make build
 
+# Copy binaries to PATH
+
+  # Either copy the binaries to a directory in your PATH
+  cp bin/{kubectl-tmc,kubectl-workloads} /usr/local/bin/kubectl-tmc
+
+  # Or add the bin directory to your PATH
+  export PATH=$PATH:$(pwd)/bin
+
 # Start TMC-KCP
 
   go run ./cmd/tmc start
@@ -24,7 +32,7 @@ and extend its functionality to support multi-cluster workload management.
 
 # Create SyncTarget for remote cluster
 
-  kubectl tmc workload sync cluster-1 --syncer-image quay.io/faroshq/tmc/syncer:latest --output-file cluster-1.yaml
+  kubectl tmc workload sync cluster-1 --syncer-image quay.io/kcp-dev/contrib-tmc/syncer:latest --output-file cluster-1.yaml
 
 # Bind compute resources
 

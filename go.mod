@@ -7,13 +7,14 @@ require (
 	github.com/aojea/rwconn v0.1.1
 	github.com/coredns/caddy v1.1.1
 	github.com/coredns/coredns v1.9.3
+	github.com/davecgh/go-spew v1.1.1
 	github.com/egymgmbh/go-prefix-writer v0.0.0-20180609083313-7326ea162eca
 	github.com/evanphx/json-patch v5.6.0+incompatible
 	github.com/google/uuid v1.3.0
 	github.com/kcp-dev/apimachinery/v2 v2.0.0-alpha.0.0.20230419125703-767ac05aebce
 	github.com/kcp-dev/client-go v0.0.0-20230519100911-e16eb4c2bf18
-	github.com/kcp-dev/kcp v0.20.0
-	github.com/kcp-dev/kcp/sdk v0.20.0
+	github.com/kcp-dev/kcp v0.0.0-20230711191019-8dd1a3f4e240
+	github.com/kcp-dev/kcp/sdk v0.0.0-20230711191019-8dd1a3f4e240
 	github.com/kcp-dev/logicalcluster/v3 v3.0.4
 	github.com/martinlindhe/base36 v1.1.1
 	github.com/miekg/dns v1.1.50
@@ -44,7 +45,6 @@ require (
 	github.com/coreos/go-oidc v2.1.0+incompatible // indirect
 	github.com/coreos/go-semver v0.3.0 // indirect
 	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dnstap/golang-dnstap v0.4.0 // indirect
 	github.com/docker/distribution v2.8.1+incompatible // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
@@ -181,8 +181,8 @@ require (
 
 replace (
 	github.com/google/cel-go => github.com/google/cel-go v0.12.6
-	github.com/kcp-dev/kcp => ../kcp
-	github.com/kcp-dev/kcp/sdk => ../kcp/sdk
+	//github.com/kcp-dev/kcp => ../kcp
+	//github.com/kcp-dev/kcp/sdk => ../kcp/sdk
 	k8s.io/api => github.com/kcp-dev/kubernetes/staging/src/k8s.io/api v0.0.0-20230526104423-c790f4246d25
 	k8s.io/apiextensions-apiserver => github.com/kcp-dev/kubernetes/staging/src/k8s.io/apiextensions-apiserver v0.0.0-20230526104423-c790f4246d25
 	k8s.io/apimachinery => github.com/kcp-dev/kubernetes/staging/src/k8s.io/apimachinery v0.0.0-20230526104423-c790f4246d25
