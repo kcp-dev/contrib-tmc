@@ -36,19 +36,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.19
+        id: go
       - name: E2E tests
         id: e2e
         shell: bash
         run: |
-          make test
-          COVERAGE=$(go tool cover -func profile.cov | grep total: | awk '{print $3}')
-          echo "\n\nCoverage will be $COVERAGE"
-          echo "::set-env name=COVERAGE::$COVERAGE"
-      - run: |
-            apt-get update -y
-            apt-get install wget tar gcc git curl runc iptables libdevmapper1.02.1 make jq -y
-
-            export PATH=$PWD/bin:$PATH
             make all
+            export PATH=$PWD/bin:$PATH
             LOG_DIR=/tmp/e2e/shared-server/artifacts ARTIFACT_DIR=/tmp/e2e  \
-            OS=linux ARCH=ppc64le E2E_PARALLELISM=4 make test-e2e -e TEST_ARGS="-timeout 50m"
+            OS=linux E2E_PARALLELISM=4 make test-e2e -e TEST_ARGS="-timeout 50m"
