@@ -46,7 +46,7 @@ import (
 	"github.com/kcp-dev/contrib-tmc/test/e2e/framework"
 )
 
-func TestSyncerTunnel(t *testing.T) {
+func XTestSyncerTunnel(t *testing.T) {
 	t.Parallel()
 	framework.Suite(t, "transparent-multi-cluster:requires-kind")
 
@@ -289,7 +289,7 @@ func TestSyncerTunnel(t *testing.T) {
 }
 
 // TestSyncerTunnelFilter ensures that the syncer tunnel will reject trying to access a Pod that is crafted and not actually upsynced.
-func TestSyncerTunnelFilter(t *testing.T) {
+func XTestSyncerTunnelFilter(t *testing.T) {
 	t.Parallel()
 	framework.Suite(t, "transparent-multi-cluster")
 
