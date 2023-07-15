@@ -26,7 +26,6 @@ import (
 	"time"
 
 	kcpdynamic "github.com/kcp-dev/client-go/dynamic"
-	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	tenancyv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1"
 	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
 	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
@@ -57,6 +56,7 @@ import (
 	"k8s.io/klog/v2"
 	"sigs.k8s.io/yaml"
 
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	scheduling1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
 	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"

@@ -23,7 +23,6 @@ import (
 	"testing"
 	"time"
 
-	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
 	"github.com/kcp-dev/logicalcluster/v3"
 	"github.com/stretchr/testify/require"
@@ -36,6 +35,7 @@ import (
 	"k8s.io/utils/pointer"
 	"sigs.k8s.io/yaml"
 
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 

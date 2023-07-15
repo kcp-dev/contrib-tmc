@@ -156,6 +156,7 @@ all: build
 .PHONY: all
 
 build: require-jq require-go require-git
+	mkdir -p bin
 	GOOS=$(OS) GOARCH=$(ARCH) CGO_ENABLED=0 go build $(BUILDFLAGS) -ldflags="$(LDFLAGS)" -o bin ./cmd/...
 	echo "To use the binaries, add them to your PATH."
 	export PATH=$$PATH:$(PWD)/bin
@@ -165,8 +166,9 @@ test:
 	go test -v -failfast `go list ./... | egrep -v /test/` -coverprofile=profile.cov
 .PHONY: test
 
-generate: codegen crds
+generate: tools codegen crds
 	go generate ./...
+	make imports
 .PHONY: generate
 
 

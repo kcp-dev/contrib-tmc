@@ -34,7 +34,6 @@ import (
 	"time"
 
 	jsonpatch "github.com/evanphx/json-patch"
-	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	"github.com/kcp-dev/kcp/pkg/cliplugins/base"
 	"github.com/kcp-dev/kcp/pkg/cliplugins/helpers"
 	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
@@ -61,6 +60,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/klog/v2"
 
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 	tmcclient "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
 	"github.com/kcp-dev/contrib-tmc/pkg/reconciler/workload/apiexport"

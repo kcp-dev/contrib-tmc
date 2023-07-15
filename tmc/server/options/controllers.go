@@ -17,9 +17,9 @@ limitations under the License.
 package options
 
 import (
-	apiresource "github.com/kcp-dev/contrib-tmc/pkg/reconciler/apiresource/options"
 	"github.com/spf13/pflag"
 
+	apiresource "github.com/kcp-dev/contrib-tmc/pkg/reconciler/apiresource/options"
 	heartbeat "github.com/kcp-dev/contrib-tmc/pkg/reconciler/workload/heartbeat/options"
 )
 

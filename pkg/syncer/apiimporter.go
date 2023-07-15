@@ -22,10 +22,6 @@ import (
 	"reflect"
 	"time"
 
-	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
-	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
-	tmcclusterclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
-	apiresourceinformer "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/apiresource/v1alpha1"
 	"github.com/kcp-dev/kcp/pkg/crdpuller"
 	"github.com/kcp-dev/kcp/pkg/logging"
 	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned"
@@ -45,7 +41,11 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
 
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
 	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	tmcclusterclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	apiresourceinformer "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/apiresource/v1alpha1"
 	workloadinformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
 	workloadv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/workload/v1alpha1"
 )
