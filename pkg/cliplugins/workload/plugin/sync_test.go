@@ -83,6 +83,15 @@ rules:
   - "list"
   - "watch"
 - apiGroups:
+  - "apiresource.kcp.io"
+  resources:
+  - apiresourceimports
+  verbs:
+  - "create"
+  - "update"
+  - "list"
+  - "watch"
+- apiGroups:
   - ""
   resources:
   - resource1
@@ -324,6 +333,15 @@ rules:
   - networkpolicies
   verbs:
   - "create"
+  - "list"
+  - "watch"
+- apiGroups:
+  - "apiresource.kcp.io"
+  resources:
+  - apiresourceimports
+  verbs:
+  - "create"
+  - "update"
   - "list"
   - "watch"
 - apiGroups:
