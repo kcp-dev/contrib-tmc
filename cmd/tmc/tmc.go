@@ -50,7 +50,7 @@ func main() {
 
 	cmd := &cobra.Command{
 		Use:   "tmc",
-		Short: "TMC - Transparent Multi Cluster - KCP subproject for multi-cluster workload management",
+		Short: "TMC - Transparent Multi Cluster - kcp subproject for multi-cluster workload management",
 		Long: help.Doc(`
 			TMC is the easiest way to manage Kubernetes applications against one or
 			more clusters, by giving you a personal control plane that schedules your
