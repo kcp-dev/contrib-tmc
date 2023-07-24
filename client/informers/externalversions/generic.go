@@ -30,8 +30,9 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/tools/cache"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 type GenericClusterInformer interface {
@@ -87,6 +88,11 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericClusterInformer, error) {
 	switch resource {
+	// Group=apiresource.kcp.io, Version=V1alpha1
+	case apiresourcev1alpha1.SchemeGroupVersion.WithResource("apiresourceimports"):
+		return &genericClusterInformer{resource: resource.GroupResource(), informer: f.Apiresource().V1alpha1().APIResourceImports().Informer()}, nil
+	case apiresourcev1alpha1.SchemeGroupVersion.WithResource("negotiatedapiresources"):
+		return &genericClusterInformer{resource: resource.GroupResource(), informer: f.Apiresource().V1alpha1().NegotiatedAPIResources().Informer()}, nil
 	// Group=scheduling.kcp.io, Version=V1alpha1
 	case schedulingv1alpha1.SchemeGroupVersion.WithResource("locations"):
 		return &genericClusterInformer{resource: resource.GroupResource(), informer: f.Scheduling().V1alpha1().Locations().Informer()}, nil
@@ -104,6 +110,13 @@ func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource
 // TODO extend this to unknown resources with a client pool
 func (f *sharedScopedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
+	// Group=apiresource.kcp.io, Version=V1alpha1
+	case apiresourcev1alpha1.SchemeGroupVersion.WithResource("apiresourceimports"):
+		informer := f.Apiresource().V1alpha1().APIResourceImports().Informer()
+		return &genericInformer{lister: cache.NewGenericLister(informer.GetIndexer(), resource.GroupResource()), informer: informer}, nil
+	case apiresourcev1alpha1.SchemeGroupVersion.WithResource("negotiatedapiresources"):
+		informer := f.Apiresource().V1alpha1().NegotiatedAPIResources().Informer()
+		return &genericInformer{lister: cache.NewGenericLister(informer.GetIndexer(), resource.GroupResource()), informer: informer}, nil
 	// Group=scheduling.kcp.io, Version=V1alpha1
 	case schedulingv1alpha1.SchemeGroupVersion.WithResource("locations"):
 		informer := f.Scheduling().V1alpha1().Locations().Informer()

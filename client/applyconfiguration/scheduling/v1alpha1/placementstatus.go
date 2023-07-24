@@ -21,7 +21,7 @@ package v1alpha1
 import (
 	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
 
-	v1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
 )
 
 // PlacementStatusApplyConfiguration represents an declarative configuration of the PlacementStatus type for use

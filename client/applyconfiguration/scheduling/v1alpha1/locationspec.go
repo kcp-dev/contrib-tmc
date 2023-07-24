@@ -19,7 +19,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1 "github.com/faroshq/tmc/client/applyconfiguration/meta/v1"
+	v1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/meta/v1"
 )
 
 // LocationSpecApplyConfiguration represents an declarative configuration of the LocationSpec type for use

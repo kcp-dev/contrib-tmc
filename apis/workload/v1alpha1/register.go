@@ -21,7 +21,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/faroshq/tmc/apis/workload"
+	"github.com/kcp-dev/contrib-tmc/apis/workload"
 )
 
 // SchemeGroupVersion is group version used to register these objects.

@@ -1,0 +1,51 @@
+name: E2E tests
+
+on:
+  push:
+    branches:
+      - main
+      - 'release-*'
+  pull_request:
+    branches:
+      - main
+      - 'release-*'
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - ".github/ISSUE_TEMPLATE/*"
+      - ".goreleaser.yaml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# NOTE!!!
+#
+# If you add a job here that is a REQUIRED status check in GitHub, you MUST add a job with the same name to ci-docs-only.yaml
+#
+# NOTE!!!
+
+env:
+  # etcd uses fsync by default, disable it for running on github actions to avoid disk contention
+  # xref: https://github.com/kcp-dev/kcp/pull/435/commits/064a517747d69c2cd8f7f8b4a595ad909e595c89
+  UNSAFE_E2E_HACK_DISABLE_ETCD_FSYNC: true
+
+jobs:
+  e2e-tests:
+    name: e2e-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.19
+        id: go
+      - name: E2E tests
+        id: e2e
+        shell: bash
+        run: |
+            make all
+            export PATH=$PWD/bin:$PATH
+            LOG_DIR=/tmp/e2e/shared-server/artifacts ARTIFACT_DIR=/tmp/e2e  \
+            OS=linux E2E_PARALLELISM=4 make test-e2e -e TEST_ARGS="-timeout 50m"

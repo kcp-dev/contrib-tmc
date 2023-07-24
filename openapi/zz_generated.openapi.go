@@ -31,38 +31,38 @@ import (
 
 func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenAPIDefinition {
 	return map[string]common.OpenAPIDefinition{
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel":                    schema_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource":                      schema_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Location":                                  schema_tmc_apis_scheduling_v1alpha1_Location(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationList":                              schema_tmc_apis_scheduling_v1alpha1_LocationList(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationReference":                         schema_tmc_apis_scheduling_v1alpha1_LocationReference(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationSpec":                              schema_tmc_apis_scheduling_v1alpha1_LocationSpec(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationStatus":                            schema_tmc_apis_scheduling_v1alpha1_LocationStatus(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Placement":                                 schema_tmc_apis_scheduling_v1alpha1_Placement(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementList":                             schema_tmc_apis_scheduling_v1alpha1_PlacementList(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementSpec":                             schema_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref),
-		"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementStatus":                           schema_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.ResourceToSync":                              schema_tmc_apis_workload_v1alpha1_ResourceToSync(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTarget":                                  schema_tmc_apis_workload_v1alpha1_SyncTarget(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetList":                              schema_tmc_apis_workload_v1alpha1_SyncTargetList(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetSpec":                              schema_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetStatus":                            schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.TunnelWorkspace":                             schema_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref),
-		"github.com/faroshq/tmc/apis/workload/v1alpha1.VirtualWorkspace":                            schema_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImport":                    schema_sdk_apis_apiresource_v1alpha1_APIResourceImport(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportCondition":           schema_sdk_apis_apiresource_v1alpha1_APIResourceImportCondition(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportList":                schema_sdk_apis_apiresource_v1alpha1_APIResourceImportList(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportSpec":                schema_sdk_apis_apiresource_v1alpha1_APIResourceImportSpec(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportStatus":              schema_sdk_apis_apiresource_v1alpha1_APIResourceImportStatus(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.ColumnDefinition":                     schema_sdk_apis_apiresource_v1alpha1_ColumnDefinition(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.CommonAPIResourceSpec":                schema_sdk_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.GroupVersion":                         schema_sdk_apis_apiresource_v1alpha1_GroupVersion(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResource":                schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResource(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceCondition":       schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceCondition(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceList":            schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceList(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceSpec":            schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceStatus":          schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceStatus(ref),
-		"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.SubResource":                          schema_sdk_apis_apiresource_v1alpha1_SubResource(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImport":                schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImport(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportCondition":       schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportCondition(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportList":            schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportSpec":            schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportStatus":          schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.ColumnDefinition":                 schema_contrib_tmc_apis_apiresource_v1alpha1_ColumnDefinition(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.CommonAPIResourceSpec":            schema_contrib_tmc_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.GroupVersion":                     schema_contrib_tmc_apis_apiresource_v1alpha1_GroupVersion(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResource":            schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResource(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceCondition":   schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceCondition(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceList":        schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceSpec":        schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceStatus":      schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.SubResource":                      schema_contrib_tmc_apis_apiresource_v1alpha1_SubResource(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel":            schema_contrib_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource":              schema_contrib_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Location":                          schema_contrib_tmc_apis_scheduling_v1alpha1_Location(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationList":                      schema_contrib_tmc_apis_scheduling_v1alpha1_LocationList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationReference":                 schema_contrib_tmc_apis_scheduling_v1alpha1_LocationReference(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationSpec":                      schema_contrib_tmc_apis_scheduling_v1alpha1_LocationSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationStatus":                    schema_contrib_tmc_apis_scheduling_v1alpha1_LocationStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Placement":                         schema_contrib_tmc_apis_scheduling_v1alpha1_Placement(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementList":                     schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementSpec":                     schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementStatus":                   schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.ResourceToSync":                      schema_contrib_tmc_apis_workload_v1alpha1_ResourceToSync(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTarget":                          schema_contrib_tmc_apis_workload_v1alpha1_SyncTarget(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetList":                      schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetList(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetSpec":                      schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetStatus":                    schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.TunnelWorkspace":                     schema_contrib_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref),
+		"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.VirtualWorkspace":                    schema_contrib_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref),
 		"github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1.APIBinding":                                  schema_sdk_apis_apis_v1alpha1_APIBinding(ref),
 		"github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1.APIBindingList":                              schema_sdk_apis_apis_v1alpha1_APIBindingList(ref),
 		"github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1.APIBindingSpec":                              schema_sdk_apis_apis_v1alpha1_APIBindingSpec(ref),
@@ -162,847 +162,7 @@ func GetOpenAPIDefinitions(ref common.ReferenceCallback) map[string]common.OpenA
 	}
 }
 
-func schema_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "AvailableSelectorLabel specifies a label with key name and possible values.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"key": {
-						SchemaProps: spec.SchemaProps{
-							Description: "key is the name of the label.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"values": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-type": "set",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "values are the possible values for this labels.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-					"description": {
-						SchemaProps: spec.SchemaProps{
-							Description: "description is a human readable description of the label.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"key", "values"},
-			},
-		},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "GroupVersionResource unambiguously identifies a resource.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"group": {
-						SchemaProps: spec.SchemaProps{
-							Description: "group is the name of an API group.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"version": {
-						SchemaProps: spec.SchemaProps{
-							Description: "version is the version of the API.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"resource": {
-						SchemaProps: spec.SchemaProps{
-							Description: "resource is the name of the resource.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"version", "resource"},
-			},
-		},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_Location(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Location represents a set of instances of a scheduling resource type acting a target of scheduling.\n\nThe location is chosen by the user (in the future) through a Placement object, while the instance is chosen by the scheduler depending on considerations like load or available resources, or further node selectors specified by the user.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
-						},
-					},
-					"spec": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationSpec"),
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationStatus"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationSpec", "github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_LocationList(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "LocationList is a list of locations.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
-						},
-					},
-					"items": {
-						SchemaProps: spec.SchemaProps{
-							Type: []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.Location"),
-									},
-								},
-							},
-						},
-					},
-				},
-				Required: []string{"metadata", "items"},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Location", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_LocationReference(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "LocationReference describes a location that are provided in the specified Workspace.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"path": {
-						SchemaProps: spec.SchemaProps{
-							Description: "path is an absolute reference to a workspace, e.g. root:org:ws. The workspace must be some ancestor or a child of some ancestor.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"locationName": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Name of the Location.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"path", "locationName"},
-			},
-		},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_LocationSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "LocationSpec holds the desired state of the Location.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"resource": {
-						SchemaProps: spec.SchemaProps{
-							Description: "resource is the group-version-resource of the instances that are subject to this location.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
-						},
-					},
-					"description": {
-						SchemaProps: spec.SchemaProps{
-							Description: "description is a human-readable description of the location.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"availableSelectorLabels": {
-						VendorExtensible: spec.VendorExtensible{
-							Extensions: spec.Extensions{
-								"x-kubernetes-list-map-keys": []interface{}{
-									"key",
-								},
-								"x-kubernetes-list-type": "map",
-							},
-						},
-						SchemaProps: spec.SchemaProps{
-							Description: "availableSelectorLabels is a list of labels that can be used to select an instance at this location in a placement object.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel"),
-									},
-								},
-							},
-						},
-					},
-					"instanceSelector": {
-						SchemaProps: spec.SchemaProps{
-							Description: "instanceSelector chooses the instances that will be part of this location.\n\nNote that these labels are not what is shown in the Location objects to the user. Depending on context, both will match or won't match.",
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"),
-						},
-					},
-				},
-				Required: []string{"resource"},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel", "github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_LocationStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "LocationStatus defines the observed state of Location.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"instances": {
-						SchemaProps: spec.SchemaProps{
-							Description: "instances is the number of actual instances at this location.",
-							Type:        []string{"integer"},
-							Format:      "int64",
-						},
-					},
-					"availableInstances": {
-						SchemaProps: spec.SchemaProps{
-							Description: "available is the number of actual instances that are available at this location.",
-							Type:        []string{"integer"},
-							Format:      "int64",
-						},
-					},
-				},
-			},
-		},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_Placement(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "Placement defines a selection rule to choose ONE location for MULTIPLE namespaces in a workspace.\n\nplacement is in Pending state initially. When a location is selected by the placement, the placement turns to Unbound state. In Pending or Unbound state, the selection rule can be updated to select another location. When the a namespace is annotated by another controller or user with the key of \"scheduling.kcp.io/placement\", the namespace will pick one placement, and this placement is transferred to Bound state. Any update to spec of the placement is ignored in Bound state and reflected in the conditions. The placement will turn back to Unbound state when no namespace uses this placement any more.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
-						},
-					},
-					"spec": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementSpec"),
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementStatus"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementSpec", "github.com/faroshq/tmc/apis/scheduling/v1alpha1.PlacementStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_PlacementList(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "PlacementList is a list of locations.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
-						},
-					},
-					"items": {
-						SchemaProps: spec.SchemaProps{
-							Type: []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.Placement"),
-									},
-								},
-							},
-						},
-					},
-				},
-				Required: []string{"metadata", "items"},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.Placement", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Type: []string{"object"},
-				Properties: map[string]spec.Schema{
-					"locationSelectors": {
-						SchemaProps: spec.SchemaProps{
-							Description: "locationSelectors represents a slice of label selector to select a location, these label selectors are logically ORed.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"),
-									},
-								},
-							},
-						},
-					},
-					"locationResource": {
-						SchemaProps: spec.SchemaProps{
-							Description: "locationResource is the group-version-resource of the instances that are subject to the locations to select.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
-						},
-					},
-					"namespaceSelector": {
-						SchemaProps: spec.SchemaProps{
-							Description: "namespaceSelector is a label selector to select ns. It match all ns by default, but can be specified to a certain set of ns.",
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"),
-						},
-					},
-					"locationWorkspace": {
-						SchemaProps: spec.SchemaProps{
-							Description: "locationWorkspace is an absolute reference to a workspace for the location. If it is not set, the workspace of APIBinding will be used.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"locationResource"},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
-	}
-}
-
-func schema_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Type: []string{"object"},
-				Properties: map[string]spec.Schema{
-					"phase": {
-						SchemaProps: spec.SchemaProps{
-							Description: "phase is the current phase of the placement",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"selectedLocation": {
-						SchemaProps: spec.SchemaProps{
-							Description: "selectedLocation is the location that a picked by this placement.",
-							Ref:         ref("github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationReference"),
-						},
-					},
-					"conditions": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Current processing state of the Placement.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/scheduling/v1alpha1.LocationReference", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"},
-	}
-}
-
-func schema_tmc_apis_workload_v1alpha1_ResourceToSync(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Type: []string{"object"},
-				Properties: map[string]spec.Schema{
-					"versions": {
-						SchemaProps: spec.SchemaProps{
-							Description: "versions are the resource versions the syncer can choose to sync depending on availability on the downstream cluster. Conversion to the storage version, if necessary, will be done on the kcp side. The versions are ordered by precedence and the first version compatible is preferred by syncer.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-					"identityHash": {
-						SchemaProps: spec.SchemaProps{
-							Description: "identityHash is the identity for a given APIExport that the APIResourceSchema belongs to. The hash can be found on APIExport and APIResourceSchema's status. It will be empty for core types.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"state": {
-						SchemaProps: spec.SchemaProps{
-							Description: "state indicate whether the resources schema is compatible to the SyncTarget. It must be updated by syncer after checking the API compatibility on SyncTarget.",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"versions"},
-			},
-		},
-	}
-}
-
-func schema_tmc_apis_workload_v1alpha1_SyncTarget(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "SyncTarget describes a member cluster capable of running workloads.",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
-						},
-					},
-					"spec": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Spec holds the desired state.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetSpec"),
-						},
-					},
-					"status": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Status communicates the observed state.",
-							Default:     map[string]interface{}{},
-							Ref:         ref("github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetStatus"),
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetSpec", "github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTargetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
-	}
-}
-
-func schema_tmc_apis_workload_v1alpha1_SyncTargetList(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "SyncTargetList is a list of SyncTarget resources",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"kind": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"apiVersion": {
-						SchemaProps: spec.SchemaProps{
-							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"metadata": {
-						SchemaProps: spec.SchemaProps{
-							Default: map[string]interface{}{},
-							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
-						},
-					},
-					"items": {
-						SchemaProps: spec.SchemaProps{
-							Type: []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTarget"),
-									},
-								},
-							},
-						},
-					},
-				},
-				Required: []string{"metadata", "items"},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/workload/v1alpha1.SyncTarget", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
-	}
-}
-
-func schema_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "SyncTargetSpec holds the desired state of the SyncTarget (from the client).",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"unschedulable": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Unschedulable controls cluster schedulability of new workloads. By default, cluster is schedulable.",
-							Default:     false,
-							Type:        []string{"boolean"},
-							Format:      "",
-						},
-					},
-					"evictAfter": {
-						SchemaProps: spec.SchemaProps{
-							Description: "EvictAfter controls cluster schedulability of new and existing workloads. After the EvictAfter time, any workload scheduled to the cluster will be unassigned from the cluster. By default, workloads scheduled to the cluster are not evicted.",
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
-						},
-					},
-					"supportedAPIExports": {
-						SchemaProps: spec.SchemaProps{
-							Description: "SupportedAPIExports defines a set of APIExports supposed to be supported by this SyncTarget. The SyncTarget will be selected to deploy the workload only when the resource schema on the SyncTarget is compatible with the resource schema included in the exports.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1.APIExportReference"),
-									},
-								},
-							},
-						},
-					},
-					"cells": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Cells is a set of labels to identify the cells the SyncTarget belongs to. SyncTargets with the same cells run as they are in the same physical cluster. Each key/value pair in the cells should be added and updated by service providers (i.e. a network provider updates one key/value, while the storage provider updates another.)",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: "",
-										Type:    []string{"string"},
-										Format:  "",
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1.APIExportReference", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
-	}
-}
-
-func schema_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Description: "SyncTargetStatus communicates the observed state of the SyncTarget (from the controller).",
-				Type:        []string{"object"},
-				Properties: map[string]spec.Schema{
-					"allocatable": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Allocatable represents the resources that are available for scheduling.",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("k8s.io/apimachinery/pkg/api/resource.Quantity"),
-									},
-								},
-							},
-						},
-					},
-					"capacity": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Capacity represents the total resources of the cluster.",
-							Type:        []string{"object"},
-							AdditionalProperties: &spec.SchemaOrBool{
-								Allows: true,
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("k8s.io/apimachinery/pkg/api/resource.Quantity"),
-									},
-								},
-							},
-						},
-					},
-					"conditions": {
-						SchemaProps: spec.SchemaProps{
-							Description: "Current processing state of the SyncTarget.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"),
-									},
-								},
-							},
-						},
-					},
-					"syncedResources": {
-						SchemaProps: spec.SchemaProps{
-							Description: "SyncedResources represents the resources that the syncer of the SyncTarget can sync. It MUST be updated by kcp server.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.ResourceToSync"),
-									},
-								},
-							},
-						},
-					},
-					"lastSyncerHeartbeatTime": {
-						SchemaProps: spec.SchemaProps{
-							Description: "A timestamp indicating when the syncer last reported status.",
-							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
-						},
-					},
-					"virtualWorkspaces": {
-						SchemaProps: spec.SchemaProps{
-							Description: "VirtualWorkspaces contains all virtual workspace URLs.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.VirtualWorkspace"),
-									},
-								},
-							},
-						},
-					},
-					"tunnelWorkspaces": {
-						SchemaProps: spec.SchemaProps{
-							Description: "TunnelWorkspaces contains all URLs (one per shard) that point to the SyncTarget workspace in order to setup the tunneler.",
-							Type:        []string{"array"},
-							Items: &spec.SchemaOrArray{
-								Schema: &spec.Schema{
-									SchemaProps: spec.SchemaProps{
-										Default: map[string]interface{}{},
-										Ref:     ref("github.com/faroshq/tmc/apis/workload/v1alpha1.TunnelWorkspace"),
-									},
-								},
-							},
-						},
-					},
-				},
-			},
-		},
-		Dependencies: []string{
-			"github.com/faroshq/tmc/apis/workload/v1alpha1.ResourceToSync", "github.com/faroshq/tmc/apis/workload/v1alpha1.TunnelWorkspace", "github.com/faroshq/tmc/apis/workload/v1alpha1.VirtualWorkspace", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition", "k8s.io/apimachinery/pkg/api/resource.Quantity", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
-	}
-}
-
-func schema_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Type: []string{"object"},
-				Properties: map[string]spec.Schema{
-					"url": {
-						SchemaProps: spec.SchemaProps{
-							Description: "url is the URL the Syncer should use to connect to the Syncer tunnel for a given shard.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"url"},
-			},
-		},
-	}
-}
-
-func schema_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
-	return common.OpenAPIDefinition{
-		Schema: spec.Schema{
-			SchemaProps: spec.SchemaProps{
-				Type: []string{"object"},
-				Properties: map[string]spec.Schema{
-					"syncerURL": {
-						SchemaProps: spec.SchemaProps{
-							Description: "SyncerURL is the URL of the syncer virtual workspace.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-					"upsyncerURL": {
-						SchemaProps: spec.SchemaProps{
-							Description: "UpsyncerURL is the URL of the upsyncer virtual workspace.",
-							Default:     "",
-							Type:        []string{"string"},
-							Format:      "",
-						},
-					},
-				},
-				Required: []string{"syncerURL", "upsyncerURL"},
-			},
-		},
-	}
-}
-
-func schema_sdk_apis_apiresource_v1alpha1_APIResourceImport(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImport(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1032,24 +192,24 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImport(ref common.Reference
 					"spec": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportSpec"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportStatus"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportSpec", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportSpec", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1102,7 +262,7 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportCondition(ref common.
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportList(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1136,7 +296,7 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportList(ref common.Refer
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImport"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImport"),
 									},
 								},
 							},
@@ -1147,11 +307,11 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportList(ref common.Refer
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImport", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImport", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1161,7 +321,7 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportSpec(ref common.Refer
 					"groupVersion": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.GroupVersion"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.GroupVersion"),
 						},
 					},
 					"scope": {
@@ -1255,7 +415,7 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportSpec(ref common.Refer
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.SubResource"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.SubResource"),
 									},
 								},
 							},
@@ -1274,7 +434,7 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportSpec(ref common.Refer
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.ColumnDefinition"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.ColumnDefinition"),
 									},
 								},
 							},
@@ -1300,11 +460,11 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportSpec(ref common.Refer
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.ColumnDefinition", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.GroupVersion", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.SubResource", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.ColumnDefinition", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.GroupVersion", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.SubResource", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_APIResourceImportStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1318,7 +478,7 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportStatus(ref common.Ref
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportCondition"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportCondition"),
 									},
 								},
 							},
@@ -1328,11 +488,11 @@ func schema_sdk_apis_apiresource_v1alpha1_APIResourceImportStatus(ref common.Ref
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.APIResourceImportCondition"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.APIResourceImportCondition"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_ColumnDefinition(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_ColumnDefinition(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1391,7 +551,7 @@ func schema_sdk_apis_apiresource_v1alpha1_ColumnDefinition(ref common.ReferenceC
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1401,7 +561,7 @@ func schema_sdk_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref common.Refer
 					"groupVersion": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.GroupVersion"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.GroupVersion"),
 						},
 					},
 					"scope": {
@@ -1495,7 +655,7 @@ func schema_sdk_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref common.Refer
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.SubResource"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.SubResource"),
 									},
 								},
 							},
@@ -1514,7 +674,7 @@ func schema_sdk_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref common.Refer
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.ColumnDefinition"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.ColumnDefinition"),
 									},
 								},
 							},
@@ -1525,11 +685,11 @@ func schema_sdk_apis_apiresource_v1alpha1_CommonAPIResourceSpec(ref common.Refer
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.ColumnDefinition", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.GroupVersion", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.SubResource", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.ColumnDefinition", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.GroupVersion", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.SubResource", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_GroupVersion(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_GroupVersion(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1555,7 +715,7 @@ func schema_sdk_apis_apiresource_v1alpha1_GroupVersion(ref common.ReferenceCallb
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1585,24 +745,24 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResource(ref common.Refer
 					"spec": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceSpec"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceSpec"),
 						},
 					},
 					"status": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceStatus"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceStatus"),
 						},
 					},
 				},
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceSpec", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceSpec", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceCondition(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1655,7 +815,7 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceCondition(ref com
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceList(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1689,7 +849,7 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceList(ref common.R
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResource"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResource"),
 									},
 								},
 							},
@@ -1700,11 +860,11 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceList(ref common.R
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResource", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResource", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1714,7 +874,7 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref common.R
 					"groupVersion": {
 						SchemaProps: spec.SchemaProps{
 							Default: map[string]interface{}{},
-							Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.GroupVersion"),
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.GroupVersion"),
 						},
 					},
 					"scope": {
@@ -1808,7 +968,7 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref common.R
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.SubResource"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.SubResource"),
 									},
 								},
 							},
@@ -1827,7 +987,7 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref common.R
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.ColumnDefinition"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.ColumnDefinition"),
 									},
 								},
 							},
@@ -1844,11 +1004,11 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceSpec(ref common.R
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.ColumnDefinition", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.GroupVersion", "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.SubResource", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.ColumnDefinition", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.GroupVersion", "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.SubResource", "k8s.io/apimachinery/pkg/runtime.RawExtension"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_NegotiatedAPIResourceStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1862,7 +1022,7 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceStatus(ref common
 								Schema: &spec.Schema{
 									SchemaProps: spec.SchemaProps{
 										Default: map[string]interface{}{},
-										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceCondition"),
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceCondition"),
 									},
 								},
 							},
@@ -1872,11 +1032,11 @@ func schema_sdk_apis_apiresource_v1alpha1_NegotiatedAPIResourceStatus(ref common
 			},
 		},
 		Dependencies: []string{
-			"github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1.NegotiatedAPIResourceCondition"},
+			"github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1.NegotiatedAPIResourceCondition"},
 	}
 }
 
-func schema_sdk_apis_apiresource_v1alpha1_SubResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
+func schema_contrib_tmc_apis_apiresource_v1alpha1_SubResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
@@ -1891,6 +1051,846 @@ func schema_sdk_apis_apiresource_v1alpha1_SubResource(ref common.ReferenceCallba
 					},
 				},
 				Required: []string{"name"},
+			},
+		},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_AvailableSelectorLabel(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "AvailableSelectorLabel specifies a label with key name and possible values.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"key": {
+						SchemaProps: spec.SchemaProps{
+							Description: "key is the name of the label.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"values": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-type": "set",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "values are the possible values for this labels.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+					"description": {
+						SchemaProps: spec.SchemaProps{
+							Description: "description is a human readable description of the label.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"key", "values"},
+			},
+		},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_GroupVersionResource(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "GroupVersionResource unambiguously identifies a resource.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"group": {
+						SchemaProps: spec.SchemaProps{
+							Description: "group is the name of an API group.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"version": {
+						SchemaProps: spec.SchemaProps{
+							Description: "version is the version of the API.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"resource": {
+						SchemaProps: spec.SchemaProps{
+							Description: "resource is the name of the resource.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"version", "resource"},
+			},
+		},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_Location(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Location represents a set of instances of a scheduling resource type acting a target of scheduling.\n\nThe location is chosen by the user (in the future) through a Placement object, while the instance is chosen by the scheduler depending on considerations like load or available resources, or further node selectors specified by the user.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationSpec", "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "LocationList is a list of locations.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
+						},
+					},
+					"items": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Location"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"metadata", "items"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Location", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationReference(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "LocationReference describes a location that are provided in the specified Workspace.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"path": {
+						SchemaProps: spec.SchemaProps{
+							Description: "path is an absolute reference to a workspace, e.g. root:org:ws. The workspace must be some ancestor or a child of some ancestor.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"locationName": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Name of the Location.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"path", "locationName"},
+			},
+		},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "LocationSpec holds the desired state of the Location.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"resource": {
+						SchemaProps: spec.SchemaProps{
+							Description: "resource is the group-version-resource of the instances that are subject to this location.",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
+						},
+					},
+					"description": {
+						SchemaProps: spec.SchemaProps{
+							Description: "description is a human-readable description of the location.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"availableSelectorLabels": {
+						VendorExtensible: spec.VendorExtensible{
+							Extensions: spec.Extensions{
+								"x-kubernetes-list-map-keys": []interface{}{
+									"key",
+								},
+								"x-kubernetes-list-type": "map",
+							},
+						},
+						SchemaProps: spec.SchemaProps{
+							Description: "availableSelectorLabels is a list of labels that can be used to select an instance at this location in a placement object.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel"),
+									},
+								},
+							},
+						},
+					},
+					"instanceSelector": {
+						SchemaProps: spec.SchemaProps{
+							Description: "instanceSelector chooses the instances that will be part of this location.\n\nNote that these labels are not what is shown in the Location objects to the user. Depending on context, both will match or won't match.",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"),
+						},
+					},
+				},
+				Required: []string{"resource"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.AvailableSelectorLabel", "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_LocationStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "LocationStatus defines the observed state of Location.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"instances": {
+						SchemaProps: spec.SchemaProps{
+							Description: "instances is the number of actual instances at this location.",
+							Type:        []string{"integer"},
+							Format:      "int64",
+						},
+					},
+					"availableInstances": {
+						SchemaProps: spec.SchemaProps{
+							Description: "available is the number of actual instances that are available at this location.",
+							Type:        []string{"integer"},
+							Format:      "int64",
+						},
+					},
+				},
+			},
+		},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_Placement(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "Placement defines a selection rule to choose ONE location for MULTIPLE namespaces in a workspace.\n\nplacement is in Pending state initially. When a location is selected by the placement, the placement turns to Unbound state. In Pending or Unbound state, the selection rule can be updated to select another location. When the a namespace is annotated by another controller or user with the key of \"scheduling.kcp.io/placement\", the namespace will pick one placement, and this placement is transferred to Bound state. Any update to spec of the placement is ignored in Bound state and reflected in the conditions. The placement will turn back to Unbound state when no namespace uses this placement any more.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementSpec", "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.PlacementStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "PlacementList is a list of locations.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
+						},
+					},
+					"items": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Placement"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"metadata", "items"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.Placement", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"locationSelectors": {
+						SchemaProps: spec.SchemaProps{
+							Description: "locationSelectors represents a slice of label selector to select a location, these label selectors are logically ORed.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"),
+									},
+								},
+							},
+						},
+					},
+					"locationResource": {
+						SchemaProps: spec.SchemaProps{
+							Description: "locationResource is the group-version-resource of the instances that are subject to the locations to select.",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource"),
+						},
+					},
+					"namespaceSelector": {
+						SchemaProps: spec.SchemaProps{
+							Description: "namespaceSelector is a label selector to select ns. It match all ns by default, but can be specified to a certain set of ns.",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"),
+						},
+					},
+					"locationWorkspace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "locationWorkspace is an absolute reference to a workspace for the location. If it is not set, the workspace of APIBinding will be used.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"locationResource"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.GroupVersionResource", "k8s.io/apimachinery/pkg/apis/meta/v1.LabelSelector"},
+	}
+}
+
+func schema_contrib_tmc_apis_scheduling_v1alpha1_PlacementStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"phase": {
+						SchemaProps: spec.SchemaProps{
+							Description: "phase is the current phase of the placement",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"selectedLocation": {
+						SchemaProps: spec.SchemaProps{
+							Description: "selectedLocation is the location that a picked by this placement.",
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationReference"),
+						},
+					},
+					"conditions": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Current processing state of the Placement.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1.LocationReference", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"},
+	}
+}
+
+func schema_contrib_tmc_apis_workload_v1alpha1_ResourceToSync(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"versions": {
+						SchemaProps: spec.SchemaProps{
+							Description: "versions are the resource versions the syncer can choose to sync depending on availability on the downstream cluster. Conversion to the storage version, if necessary, will be done on the kcp side. The versions are ordered by precedence and the first version compatible is preferred by syncer.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+					"identityHash": {
+						SchemaProps: spec.SchemaProps{
+							Description: "identityHash is the identity for a given APIExport that the APIResourceSchema belongs to. The hash can be found on APIExport and APIResourceSchema's status. It will be empty for core types.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"state": {
+						SchemaProps: spec.SchemaProps{
+							Description: "state indicate whether the resources schema is compatible to the SyncTarget. It must be updated by syncer after checking the API compatibility on SyncTarget.",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"versions"},
+			},
+		},
+	}
+}
+
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTarget(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SyncTarget describes a member cluster capable of running workloads.",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"),
+						},
+					},
+					"spec": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Spec holds the desired state.",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetSpec"),
+						},
+					},
+					"status": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Status communicates the observed state.",
+							Default:     map[string]interface{}{},
+							Ref:         ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetStatus"),
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetSpec", "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTargetStatus", "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"},
+	}
+}
+
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetList(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SyncTargetList is a list of SyncTarget resources",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"kind": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"apiVersion": {
+						SchemaProps: spec.SchemaProps{
+							Description: "APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"metadata": {
+						SchemaProps: spec.SchemaProps{
+							Default: map[string]interface{}{},
+							Ref:     ref("k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"),
+						},
+					},
+					"items": {
+						SchemaProps: spec.SchemaProps{
+							Type: []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTarget"),
+									},
+								},
+							},
+						},
+					},
+				},
+				Required: []string{"metadata", "items"},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.SyncTarget", "k8s.io/apimachinery/pkg/apis/meta/v1.ListMeta"},
+	}
+}
+
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetSpec(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SyncTargetSpec holds the desired state of the SyncTarget (from the client).",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"unschedulable": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Unschedulable controls cluster schedulability of new workloads. By default, cluster is schedulable.",
+							Default:     false,
+							Type:        []string{"boolean"},
+							Format:      "",
+						},
+					},
+					"evictAfter": {
+						SchemaProps: spec.SchemaProps{
+							Description: "EvictAfter controls cluster schedulability of new and existing workloads. After the EvictAfter time, any workload scheduled to the cluster will be unassigned from the cluster. By default, workloads scheduled to the cluster are not evicted.",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
+					"supportedAPIExports": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SupportedAPIExports defines a set of APIExports supposed to be supported by this SyncTarget. The SyncTarget will be selected to deploy the workload only when the resource schema on the SyncTarget is compatible with the resource schema included in the exports.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1.APIExportReference"),
+									},
+								},
+							},
+						},
+					},
+					"cells": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Cells is a set of labels to identify the cells the SyncTarget belongs to. SyncTargets with the same cells run as they are in the same physical cluster. Each key/value pair in the cells should be added and updated by service providers (i.e. a network provider updates one key/value, while the storage provider updates another.)",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: "",
+										Type:    []string{"string"},
+										Format:  "",
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/kcp/sdk/apis/tenancy/v1alpha1.APIExportReference", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
+	}
+}
+
+func schema_contrib_tmc_apis_workload_v1alpha1_SyncTargetStatus(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Description: "SyncTargetStatus communicates the observed state of the SyncTarget (from the controller).",
+				Type:        []string{"object"},
+				Properties: map[string]spec.Schema{
+					"allocatable": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Allocatable represents the resources that are available for scheduling.",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("k8s.io/apimachinery/pkg/api/resource.Quantity"),
+									},
+								},
+							},
+						},
+					},
+					"capacity": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Capacity represents the total resources of the cluster.",
+							Type:        []string{"object"},
+							AdditionalProperties: &spec.SchemaOrBool{
+								Allows: true,
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("k8s.io/apimachinery/pkg/api/resource.Quantity"),
+									},
+								},
+							},
+						},
+					},
+					"conditions": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Current processing state of the SyncTarget.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition"),
+									},
+								},
+							},
+						},
+					},
+					"syncedResources": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SyncedResources represents the resources that the syncer of the SyncTarget can sync. It MUST be updated by kcp server.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.ResourceToSync"),
+									},
+								},
+							},
+						},
+					},
+					"lastSyncerHeartbeatTime": {
+						SchemaProps: spec.SchemaProps{
+							Description: "A timestamp indicating when the syncer last reported status.",
+							Ref:         ref("k8s.io/apimachinery/pkg/apis/meta/v1.Time"),
+						},
+					},
+					"virtualWorkspaces": {
+						SchemaProps: spec.SchemaProps{
+							Description: "VirtualWorkspaces contains all virtual workspace URLs.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.VirtualWorkspace"),
+									},
+								},
+							},
+						},
+					},
+					"tunnelWorkspaces": {
+						SchemaProps: spec.SchemaProps{
+							Description: "TunnelWorkspaces contains all URLs (one per shard) that point to the SyncTarget workspace in order to setup the tunneler.",
+							Type:        []string{"array"},
+							Items: &spec.SchemaOrArray{
+								Schema: &spec.Schema{
+									SchemaProps: spec.SchemaProps{
+										Default: map[string]interface{}{},
+										Ref:     ref("github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.TunnelWorkspace"),
+									},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+		Dependencies: []string{
+			"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.ResourceToSync", "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.TunnelWorkspace", "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1.VirtualWorkspace", "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1.Condition", "k8s.io/apimachinery/pkg/api/resource.Quantity", "k8s.io/apimachinery/pkg/apis/meta/v1.Time"},
+	}
+}
+
+func schema_contrib_tmc_apis_workload_v1alpha1_TunnelWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"url": {
+						SchemaProps: spec.SchemaProps{
+							Description: "url is the URL the Syncer should use to connect to the Syncer tunnel for a given shard.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"url"},
+			},
+		},
+	}
+}
+
+func schema_contrib_tmc_apis_workload_v1alpha1_VirtualWorkspace(ref common.ReferenceCallback) common.OpenAPIDefinition {
+	return common.OpenAPIDefinition{
+		Schema: spec.Schema{
+			SchemaProps: spec.SchemaProps{
+				Type: []string{"object"},
+				Properties: map[string]spec.Schema{
+					"syncerURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "SyncerURL is the URL of the syncer virtual workspace.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+					"upsyncerURL": {
+						SchemaProps: spec.SchemaProps{
+							Description: "UpsyncerURL is the URL of the upsyncer virtual workspace.",
+							Default:     "",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
+				},
+				Required: []string{"syncerURL", "upsyncerURL"},
 			},
 		},
 	}

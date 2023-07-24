@@ -25,14 +25,16 @@ import (
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 var Scheme = runtime.NewScheme()
 var Codecs = serializer.NewCodecFactory(Scheme)
 var ParameterCodec = runtime.NewParameterCodec(Scheme)
 var localSchemeBuilder = runtime.SchemeBuilder{
+	apiresourcev1alpha1.AddToScheme,
 	schedulingv1alpha1.AddToScheme,
 	workloadv1alpha1.AddToScheme,
 }

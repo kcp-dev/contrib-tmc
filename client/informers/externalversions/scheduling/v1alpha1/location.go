@@ -34,11 +34,11 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/tools/cache"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	scopedclientset "github.com/faroshq/tmc/client/clientset/versioned"
-	clientset "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	"github.com/faroshq/tmc/client/informers/externalversions/internalinterfaces"
-	schedulingv1alpha1listers "github.com/faroshq/tmc/client/listers/scheduling/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	scopedclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	clientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	"github.com/kcp-dev/contrib-tmc/client/informers/externalversions/internalinterfaces"
+	schedulingv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/scheduling/v1alpha1"
 )
 
 // LocationClusterInformer provides access to a shared informer and lister for

@@ -19,6 +19,7 @@ package placement
 import (
 	"context"
 
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -27,9 +28,8 @@ import (
 	utilserrors "k8s.io/apimachinery/pkg/util/errors"
 	"k8s.io/klog/v2"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 type reconcileStatus int
@@ -75,7 +75,7 @@ func (c *controller) reconcile(ctx context.Context, placement *schedulingv1alpha
 func (c *controller) patchPlacement(ctx context.Context, clusterName logicalcluster.Path, name string, pt types.PatchType, data []byte, opts metav1.PatchOptions, subresources ...string) (*schedulingv1alpha1.Placement, error) {
 	logger := klog.FromContext(ctx)
 	logger.WithValues("patch", string(data)).V(2).Info("patching Placement")
-	return c.tmcClient.Cluster(clusterName).SchedulingV1alpha1().Placements().Patch(ctx, name, pt, data, opts, subresources...)
+	return c.tmcClusterClient.Cluster(clusterName).SchedulingV1alpha1().Placements().Patch(ctx, name, pt, data, opts, subresources...)
 }
 
 // listWorkloadAPIBindings list all compute apibindings.

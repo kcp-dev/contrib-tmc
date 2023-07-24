@@ -36,7 +36,7 @@ import (
 	kubefake "k8s.io/client-go/kubernetes/fake"
 	clienttesting "k8s.io/client-go/testing"
 
-	"github.com/faroshq/tmc/pkg/syncer/shared"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 var (

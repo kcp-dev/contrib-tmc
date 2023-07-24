@@ -1,9 +1,6 @@
 apiVersion: apis.kcp.io/v1alpha1
 kind: APIExport
 metadata:
-  annotations:
-    bootstrap.kcp.io/battery: root-compute-workspace
-    extra.apis.kcp.io/compute.workload.kcp.io: "true"
   name: kubernetes
 spec:
   latestResourceSchemas:

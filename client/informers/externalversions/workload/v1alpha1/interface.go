@@ -22,7 +22,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	"github.com/faroshq/tmc/client/informers/externalversions/internalinterfaces"
+	"github.com/kcp-dev/contrib-tmc/client/informers/externalversions/internalinterfaces"
 )
 
 type ClusterInterface interface {

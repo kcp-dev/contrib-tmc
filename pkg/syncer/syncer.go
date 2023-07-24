@@ -22,6 +22,11 @@ import (
 	"time"
 
 	kcpdynamic "github.com/kcp-dev/client-go/dynamic"
+	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
+	ddsif "github.com/kcp-dev/kcp/pkg/informer"
+	kcpcorev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1"
+	kcpclusterclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
+	kcpinformers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	corev1 "k8s.io/api/core/v1"
@@ -39,29 +44,24 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	tmcclientset "github.com/faroshq/tmc/client/clientset/versioned"
-	tmcclusterclientset "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	tmcinformers "github.com/faroshq/tmc/client/informers/externalversions"
-	tmcfeatures "github.com/faroshq/tmc/pkg/features"
-	"github.com/faroshq/tmc/pkg/syncer/controllermanager"
-	"github.com/faroshq/tmc/pkg/syncer/endpoints"
-	"github.com/faroshq/tmc/pkg/syncer/indexers"
-	"github.com/faroshq/tmc/pkg/syncer/namespace"
-	"github.com/faroshq/tmc/pkg/syncer/shared"
-	"github.com/faroshq/tmc/pkg/syncer/spec"
-	"github.com/faroshq/tmc/pkg/syncer/spec/dns"
-	"github.com/faroshq/tmc/pkg/syncer/spec/mutators"
-	"github.com/faroshq/tmc/pkg/syncer/status"
-	"github.com/faroshq/tmc/pkg/syncer/synctarget"
-	"github.com/faroshq/tmc/pkg/syncer/upsync"
-	. "github.com/faroshq/tmc/tmc/pkg/logging"
-	"github.com/kcp-dev/kcp/pkg/features"
-	kcpfeatures "github.com/kcp-dev/kcp/pkg/features"
-	ddsif "github.com/kcp-dev/kcp/pkg/informer"
-	kcpcorev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/core/v1alpha1"
-	kcpclusterclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
-	kcpinformers "github.com/kcp-dev/kcp/sdk/client/informers/externalversions"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	tmcclusterclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	tmcinformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions"
+	tmcfeatures "github.com/kcp-dev/contrib-tmc/pkg/features"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/controllermanager"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/endpoints"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/indexers"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/namespace"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/spec"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/spec/dns"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/spec/mutators"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/status"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/synctarget"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/upsync"
+	"github.com/kcp-dev/contrib-tmc/tmc/features"
+	. "github.com/kcp-dev/contrib-tmc/tmc/logging"
 )
 
 const (
@@ -151,16 +151,18 @@ func StartSyncer(ctx context.Context, cfg *SyncerConfig, numSyncerThreads int, i
 	// TODO(qiujian16) make starting apiimporter optional after we check compatibility of supported APIExports
 	// of synctarget in syncer rather than in server.
 	kcpImporterInformerFactory := kcpinformers.NewSharedScopedInformerFactoryWithOptions(kcpSyncTargetClient, resyncPeriod)
+	tmcImprterInformerFactory := tmcinformers.NewSharedScopedInformerFactoryWithOptions(tmcSyncTargetClient, resyncPeriod)
 	apiImporter, err := NewAPIImporter(
 		cfg.UpstreamConfig, cfg.DownstreamConfig,
 		tmcSyncTargetInformerFactory.Workload().V1alpha1().SyncTargets(),
-		kcpImporterInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
+		tmcSyncTargetInformerFactory.Apiresource().V1alpha1().APIResourceImports(),
 		resources,
 		cfg.SyncTargetPath, cfg.SyncTargetName, syncTarget.GetUID())
 	if err != nil {
 		return err
 	}
 	kcpImporterInformerFactory.Start(ctx.Done())
+	tmcImprterInformerFactory.Start(ctx.Done())
 
 	downstreamConfig := rest.CopyConfig(cfg.DownstreamConfig)
 	rest.AddUserAgent(downstreamConfig, "kcp#status-syncer/"+kcpVersion)
@@ -515,7 +517,7 @@ func StartHeartbeat(ctx context.Context, tmcSyncTargetClient tmcclientset.Interf
 		// poll error can be safely ignored.
 		_ = wait.PollImmediateInfiniteWithContext(ctx, 1*time.Second, func(ctx context.Context) (bool, error) {
 			patchBytes := []byte(fmt.Sprintf(`[{"op":"test","path":"/metadata/uid","value":%q},{"op":"replace","path":"/status/lastSyncerHeartbeatTime","value":%q}]`, syncTargetUID, time.Now().Format(time.RFC3339)))
-			syncTarget, err := tmcSyncTargetClient.WorkloadV1alpha1().SyncTargets().Patch(ctx, syncTargetName, types.JSONPatchType, patchBytes, metav1.PatchOptions{}, "status")
+			syncTarget, err := tmcSyncTargetClient.WorkloadV1alpha1().SyncTargets().Patch(ctx, syncTargetName, types.JSONPatchType, patchBytes, metav1.PatchOptions{}) // https://github.com/kcp-dev/contrib-tmc/issues/1
 			if err != nil {
 				logger.Error(err, "failed to set status.lastSyncerHeartbeatTime")
 				return false, nil

@@ -20,10 +20,10 @@ import (
 	"fmt"
 
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
 	"github.com/kcp-dev/logicalcluster/v3"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 // indexAPIExportsByAPIResourceSchemasFunc is an index function that maps an APIExport to its spec.latestResourceSchemas.

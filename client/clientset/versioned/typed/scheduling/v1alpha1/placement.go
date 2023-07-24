@@ -29,9 +29,9 @@ import (
 	watch "k8s.io/apimachinery/pkg/watch"
 	rest "k8s.io/client-go/rest"
 
-	v1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/scheduling/v1alpha1"
-	scheme "github.com/faroshq/tmc/client/clientset/versioned/scheme"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/scheduling/v1alpha1"
+	scheme "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/scheme"
 )
 
 // PlacementsGetter has a method to return a PlacementInterface.

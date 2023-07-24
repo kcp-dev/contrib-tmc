@@ -29,9 +29,9 @@ import (
 	watch "k8s.io/apimachinery/pkg/watch"
 	rest "k8s.io/client-go/rest"
 
-	v1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/workload/v1alpha1"
-	scheme "github.com/faroshq/tmc/client/clientset/versioned/scheme"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/workload/v1alpha1"
+	scheme "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/scheme"
 )
 
 // SyncTargetsGetter has a method to return a SyncTargetInterface.

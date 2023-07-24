@@ -36,8 +36,8 @@ import (
 	"k8s.io/client-go/tools/cache"
 	utilspointer "k8s.io/utils/pointer"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/faroshq/tmc/pkg/syncer/shared"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
 )
 
 var kcpApiAccessVolume = corev1.Volume{

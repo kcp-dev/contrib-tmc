@@ -19,12 +19,11 @@ limitations under the License.
 package v1alpha1
 
 import (
-	apiresourcev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
-
 	v1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 
-	apiextensionsv1 "github.com/faroshq/tmc/client/applyconfiguration/apiextensions/v1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
+	apiextensionsv1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apiextensions/v1"
 )
 
 // CommonAPIResourceSpecApplyConfiguration represents an declarative configuration of the CommonAPIResourceSpec type for use

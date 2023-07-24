@@ -21,14 +21,14 @@ import (
 	"embed"
 
 	kcpdynamic "github.com/kcp-dev/client-go/dynamic"
+	confighelpers "github.com/kcp-dev/kcp/config/helpers"
+	"github.com/kcp-dev/kcp/sdk/apis/core"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	kcpapiextensionsclientset "k8s.io/apiextensions-apiserver/pkg/client/kcp/clientset/versioned"
 	"k8s.io/apimachinery/pkg/util/sets"
 
-	kube124 "github.com/faroshq/tmc/config/rootcompute/kube-1.24"
-	confighelpers "github.com/kcp-dev/kcp/config/helpers"
-	"github.com/kcp-dev/kcp/sdk/apis/core"
+	kube124 "github.com/kcp-dev/contrib-tmc/config/rootcompute/kube-1.24"
 )
 
 //go:embed *.yaml

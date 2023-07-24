@@ -1,0 +1,9 @@
+apiVersion: apis.kcp.io/v1alpha1
+kind: APIExport
+metadata:
+  creationTimestamp: null
+  name: workload.kcp.io
+spec:
+  latestResourceSchemas:
+  - v230618-0f88c5d.synctargets.workload.kcp.io
+status: {}

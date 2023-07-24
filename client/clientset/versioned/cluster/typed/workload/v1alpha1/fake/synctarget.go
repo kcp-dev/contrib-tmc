@@ -36,9 +36,9 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/testing"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	applyconfigurationsworkloadv1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/workload/v1alpha1"
-	workloadv1alpha1client "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	applyconfigurationsworkloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/workload/v1alpha1"
+	workloadv1alpha1client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
 )
 
 var syncTargetsResource = schema.GroupVersionResource{Group: "workload.kcp.io", Version: "v1alpha1", Resource: "synctargets"}

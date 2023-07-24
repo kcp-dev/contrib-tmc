@@ -34,11 +34,12 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/tools/cache"
 
-	scopedclientset "github.com/faroshq/tmc/client/clientset/versioned"
-	clientset "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	"github.com/faroshq/tmc/client/informers/externalversions/internalinterfaces"
-	schedulinginformers "github.com/faroshq/tmc/client/informers/externalversions/scheduling"
-	workloadinformers "github.com/faroshq/tmc/client/informers/externalversions/workload"
+	scopedclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	clientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	apiresourceinformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/apiresource"
+	"github.com/kcp-dev/contrib-tmc/client/informers/externalversions/internalinterfaces"
+	schedulinginformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/scheduling"
+	workloadinformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload"
 )
 
 // SharedInformerOption defines the functional option type for SharedInformerFactory.
@@ -259,8 +260,13 @@ type SharedInformerFactory interface {
 	// InformerFor returns the SharedIndexInformer for obj.
 	InformerFor(obj runtime.Object, newFunc internalinterfaces.NewInformerFunc) kcpcache.ScopeableSharedIndexInformer
 
+	Apiresource() apiresourceinformers.ClusterInterface
 	Scheduling() schedulinginformers.ClusterInterface
 	Workload() workloadinformers.ClusterInterface
+}
+
+func (f *sharedInformerFactory) Apiresource() apiresourceinformers.ClusterInterface {
+	return apiresourceinformers.New(f, f.tweakListOptions)
 }
 
 func (f *sharedInformerFactory) Scheduling() schedulinginformers.ClusterInterface {
@@ -413,8 +419,13 @@ type SharedScopedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
+	Apiresource() apiresourceinformers.Interface
 	Scheduling() schedulinginformers.Interface
 	Workload() workloadinformers.Interface
+}
+
+func (f *sharedScopedInformerFactory) Apiresource() apiresourceinformers.Interface {
+	return apiresourceinformers.NewScoped(f, f.namespace, f.tweakListOptions)
 }
 
 func (f *sharedScopedInformerFactory) Scheduling() schedulinginformers.Interface {

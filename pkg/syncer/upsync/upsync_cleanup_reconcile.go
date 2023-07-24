@@ -34,8 +34,8 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
 
-	"github.com/faroshq/tmc/pkg/syncer/shared"
-	. "github.com/faroshq/tmc/tmc/pkg/logging"
+	"github.com/kcp-dev/contrib-tmc/pkg/syncer/shared"
+	. "github.com/kcp-dev/contrib-tmc/tmc/logging"
 )
 
 type cleanupReconciler struct {

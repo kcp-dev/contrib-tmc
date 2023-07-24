@@ -22,6 +22,9 @@ import (
 	"time"
 
 	kcpcache "github.com/kcp-dev/apimachinery/v2/pkg/cache"
+	"github.com/kcp-dev/kcp/pkg/logging"
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -33,15 +36,12 @@ import (
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	tmcclientset "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	schedulingv1alpha1informers "github.com/faroshq/tmc/client/informers/externalversions/scheduling/v1alpha1"
-	workloadv1alpha1informers "github.com/faroshq/tmc/client/informers/externalversions/workload/v1alpha1"
-	schedulingv1alpha1listers "github.com/faroshq/tmc/client/listers/scheduling/v1alpha1"
-	workloadv1alpha1listers "github.com/faroshq/tmc/client/listers/workload/v1alpha1"
-	"github.com/kcp-dev/kcp/pkg/logging"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
-	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	schedulingv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/scheduling/v1alpha1"
+	workloadv1alpha1informers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
+	schedulingv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/scheduling/v1alpha1"
+	workloadv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/workload/v1alpha1"
 )
 
 const (
@@ -53,7 +53,7 @@ const (
 // NewController returns a new controller instance.
 func NewController(
 	kcpClusterClient kcpclientset.ClusterInterface,
-	tmcClient tmcclientset.ClusterInterface,
+	tmcClusterClient tmcclientset.ClusterInterface,
 	syncTargetInformer workloadv1alpha1informers.SyncTargetClusterInformer,
 	locationInformer schedulingv1alpha1informers.LocationClusterInformer,
 ) (*controller, error) {
@@ -71,7 +71,7 @@ func NewController(
 		},
 
 		kcpClusterClient: kcpClusterClient,
-		tmcClient:        tmcClient,
+		tmcClusterClient: tmcClusterClient,
 		syncTargetLister: syncTargetInformer.Lister(),
 		locationLister:   locationInformer.Lister(),
 	}
@@ -104,7 +104,7 @@ type controller struct {
 	enqueueAfter func(*apisv1alpha1.APIExport, time.Duration)
 
 	kcpClusterClient kcpclientset.ClusterInterface
-	tmcClient        tmcclientset.ClusterInterface
+	tmcClusterClient tmcclientset.ClusterInterface
 
 	syncTargetLister workloadv1alpha1listers.SyncTargetClusterLister
 	locationLister   schedulingv1alpha1listers.LocationClusterLister
@@ -214,7 +214,7 @@ func (c *controller) process(ctx context.Context, key string) error {
 		}
 		logger = logging.WithObject(logger, location)
 		logger.Info("creating Location")
-		_, err = c.tmcClient.Cluster(clusterName.Path()).SchedulingV1alpha1().Locations().Create(ctx, location, metav1.CreateOptions{})
+		_, err = c.tmcClusterClient.Cluster(clusterName.Path()).SchedulingV1alpha1().Locations().Create(ctx, location, metav1.CreateOptions{})
 		if err != nil && !apierrors.IsAlreadyExists(err) {
 			logger.Error(err, "failed to create Location")
 			return err

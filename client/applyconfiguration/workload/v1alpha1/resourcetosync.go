@@ -19,8 +19,8 @@ limitations under the License.
 package v1alpha1
 
 import (
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	v1alpha1 "github.com/faroshq/tmc/client/applyconfiguration/apis/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/client/applyconfiguration/apis/v1alpha1"
 )
 
 // ResourceToSyncApplyConfiguration represents an declarative configuration of the ResourceToSync type for use

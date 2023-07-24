@@ -19,7 +19,7 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
+	v1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
 )
 
 // AvailableSelectorLabelApplyConfiguration represents an declarative configuration of the AvailableSelectorLabel type for use

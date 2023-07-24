@@ -29,15 +29,18 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/discovery"
 
-	client "github.com/faroshq/tmc/client/clientset/versioned"
-	kcpclient "github.com/faroshq/tmc/client/clientset/versioned/cluster"
-	kcpschedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
-	fakeschedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1/fake"
-	kcpworkloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
-	fakeworkloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1/fake"
-	clientscheme "github.com/faroshq/tmc/client/clientset/versioned/scheme"
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1"
+	client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	kcpclient "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	kcpapiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/apiresource/v1alpha1"
+	fakeapiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/apiresource/v1alpha1/fake"
+	kcpschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
+	fakeschedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1/fake"
+	kcpworkloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
+	fakeworkloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1/fake"
+	clientscheme "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/scheme"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/apiresource/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
 )
 
 // NewSimpleClientset returns a clientset that will respond with the provided objects.
@@ -72,6 +75,11 @@ func (c *ClusterClientset) Discovery() discovery.DiscoveryInterface {
 
 func (c *ClusterClientset) Tracker() kcptesting.ObjectTracker {
 	return c.tracker
+}
+
+// ApiresourceV1alpha1 retrieves the ApiresourceV1alpha1ClusterClient.
+func (c *ClusterClientset) ApiresourceV1alpha1() kcpapiresourcev1alpha1.ApiresourceV1alpha1ClusterInterface {
+	return &fakeapiresourcev1alpha1.ApiresourceV1alpha1ClusterClient{Fake: c.Fake}
 }
 
 // SchedulingV1alpha1 retrieves the SchedulingV1alpha1ClusterClient.
@@ -114,6 +122,11 @@ func (c *Clientset) Discovery() discovery.DiscoveryInterface {
 
 func (c *Clientset) Tracker() kcptesting.ScopedObjectTracker {
 	return c.tracker
+}
+
+// ApiresourceV1alpha1 retrieves the ApiresourceV1alpha1Client.
+func (c *Clientset) ApiresourceV1alpha1() apiresourcev1alpha1.ApiresourceV1alpha1Interface {
+	return &fakeapiresourcev1alpha1.ApiresourceV1alpha1Client{Fake: c.Fake, ClusterPath: c.clusterPath}
 }
 
 // SchedulingV1alpha1 retrieves the SchedulingV1alpha1Client.

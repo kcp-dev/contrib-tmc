@@ -1,0 +1,11 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: system:tmc:universal-workspacetype-use
+rules:
+- apiGroups: ["tenancy.kcp.io"]
+  resources:
+  - "workspacetypes"
+  resourceNames:
+  - "tmc"
+  verbs: ["use"]

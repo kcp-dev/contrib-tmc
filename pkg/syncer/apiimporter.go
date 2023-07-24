@@ -22,6 +22,10 @@ import (
 	"reflect"
 	"time"
 
+	"github.com/kcp-dev/kcp/pkg/crdpuller"
+	"github.com/kcp-dev/kcp/pkg/logging"
+	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned"
+	kcpclusterclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
@@ -37,15 +41,13 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	workloadinformers "github.com/faroshq/tmc/client/informers/externalversions/workload/v1alpha1"
-	workloadv1alpha1listers "github.com/faroshq/tmc/client/listers/workload/v1alpha1"
-	"github.com/kcp-dev/kcp/pkg/crdpuller"
-	"github.com/kcp-dev/kcp/pkg/logging"
-	apiresourcev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
-	kcpclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned"
-	kcpclusterclientset "github.com/kcp-dev/kcp/sdk/client/clientset/versioned/cluster"
-	apiresourceinformer "github.com/kcp-dev/kcp/sdk/client/informers/externalversions/apiresource/v1alpha1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	tmcclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	tmcclusterclientset "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster"
+	apiresourceinformer "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/apiresource/v1alpha1"
+	workloadinformers "github.com/kcp-dev/contrib-tmc/client/informers/externalversions/workload/v1alpha1"
+	workloadv1alpha1listers "github.com/kcp-dev/contrib-tmc/client/listers/workload/v1alpha1"
 )
 
 var clusterKind = reflect.TypeOf(workloadv1alpha1.SyncTarget{}).Name()
@@ -90,7 +92,13 @@ func NewAPIImporter(
 		return nil, err
 	}
 
+	tmcClusterClient, err := tmcclusterclientset.NewForConfig(downstreamConfig)
+	if err != nil {
+		return nil, err
+	}
+
 	kcpClient := kcpClusterClient.Cluster(syncTargetPath)
+	tmcClient := tmcClusterClient.Cluster(syncTargetPath)
 
 	importIndexer := apiImportInformer.Informer().GetIndexer()
 
@@ -135,6 +143,7 @@ func NewAPIImporter(
 
 	return &APIImporter{
 		kcpClient:                kcpClient,
+		tmcClient:                tmcClient,
 		resourcesToSync:          resourcesToSync,
 		apiresourceImportIndexer: importIndexer,
 		syncTargetLister:         synctargetInformer.Lister(),
@@ -147,6 +156,7 @@ func NewAPIImporter(
 
 type APIImporter struct {
 	kcpClient                kcpclientset.Interface
+	tmcClient                tmcclientset.Interface
 	resourcesToSync          []string
 	apiresourceImportIndexer cache.Indexer
 	syncTargetLister         workloadv1alpha1listers.SyncTargetLister
@@ -195,7 +205,7 @@ func (i *APIImporter) Stop(ctx context.Context) {
 	for _, obj := range objs {
 		apiResourceImportToDelete := obj.(*apiresourcev1alpha1.APIResourceImport)
 		logger := logger.WithValues("apiResourceImport", apiResourceImportToDelete.Name)
-		err := i.kcpClient.ApiresourceV1alpha1().APIResourceImports().Delete(context.Background(), apiResourceImportToDelete.Name, metav1.DeleteOptions{})
+		err := i.tmcClient.ApiresourceV1alpha1().APIResourceImports().Delete(context.Background(), apiResourceImportToDelete.Name, metav1.DeleteOptions{})
 		if err != nil {
 			logger.Error(err, "error deleting APIResourceImport")
 		}
@@ -269,7 +279,7 @@ func (i *APIImporter) ImportAPIs(ctx context.Context) {
 			}
 			logger = logger.WithValues("apiResourceImport", apiResourceImport.Name)
 			logger.Info("updating APIResourceImport")
-			if _, err := i.kcpClient.ApiresourceV1alpha1().APIResourceImports().Update(ctx, apiResourceImport, metav1.UpdateOptions{}); err != nil {
+			if _, err := i.tmcClient.ApiresourceV1alpha1().APIResourceImports().Update(ctx, apiResourceImport, metav1.UpdateOptions{}); err != nil {
 				logger.Error(err, "error updating APIResourceImport")
 				continue
 			}
@@ -318,7 +328,7 @@ func (i *APIImporter) ImportAPIs(ctx context.Context) {
 			}
 
 			logger.Info("creating APIResourceImport")
-			if _, err := i.kcpClient.ApiresourceV1alpha1().APIResourceImports().Create(ctx, apiResourceImport, metav1.CreateOptions{}); err != nil {
+			if _, err := i.tmcClient.ApiresourceV1alpha1().APIResourceImports().Create(ctx, apiResourceImport, metav1.CreateOptions{}); err != nil {
 				logger.Error(err, "error creating APIResourceImport")
 				continue
 			}
@@ -351,7 +361,7 @@ func (i *APIImporter) ImportAPIs(ctx context.Context) {
 			apiResourceImportToRemove := objs[0].(*apiresourcev1alpha1.APIResourceImport)
 			logger = logger.WithValues("apiResourceImport", apiResourceImportToRemove.Name)
 			logger.Info("deleting APIResourceImport")
-			err := i.kcpClient.ApiresourceV1alpha1().APIResourceImports().Delete(ctx, apiResourceImportToRemove.Name, metav1.DeleteOptions{})
+			err := i.tmcClient.ApiresourceV1alpha1().APIResourceImports().Delete(ctx, apiResourceImportToRemove.Name, metav1.DeleteOptions{})
 			if err != nil {
 				logger.Error(err, "error deleting APIResourceImport")
 				continue

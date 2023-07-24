@@ -34,7 +34,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apiserver/pkg/endpoints/request"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 func TestPodSubresourceProxyingHandler(t *testing.T) {

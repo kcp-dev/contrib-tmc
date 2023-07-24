@@ -4,7 +4,6 @@ metadata:
   name: compute
   annotations:
     bootstrap.kcp.io/create-only: "true"
-    bootstrap.kcp.io/battery: root-compute-workspace
 spec:
   type:
     name: universal

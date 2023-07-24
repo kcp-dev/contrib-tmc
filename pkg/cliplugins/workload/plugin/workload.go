@@ -22,12 +22,13 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/kcp-dev/kcp/pkg/cliplugins/base"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 
-	tmcclient "github.com/faroshq/tmc/client/clientset/versioned"
-	"github.com/kcp-dev/kcp/pkg/cliplugins/base"
+	tmcclient "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
 )
 
 // CordonOptions contains options for cordoning or uncordoning a SyncTarget.

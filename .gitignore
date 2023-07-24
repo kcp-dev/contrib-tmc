@@ -1,0 +1,8 @@
+bin/*
+.tmc
+__debug_bin
+profile.cov
+hack/tools/*
+*.kubeconfig
+go.work
+go.work.sum

@@ -23,6 +23,9 @@ import (
 	"math/rand"
 	"strings"
 
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
+	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -31,15 +34,12 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/klog/v2"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/apis/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	locationreconciler "github.com/faroshq/tmc/pkg/reconciler/scheduling/location"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
-	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
-	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
+	locationreconciler "github.com/kcp-dev/contrib-tmc/pkg/reconciler/scheduling/location"
 )
 
-// placementSchedulingReconciler schedules placments according to the selected locations.
+// placementSchedulingReconciler schedules placements according to the selected locations.
 // It considers only valid SyncTargets and updates the internal.workload.kcp.io/synctarget
 // annotation with the selected one on the placement object.
 type placementSchedulingReconciler struct {

@@ -19,9 +19,9 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 
-	synceroptions "github.com/faroshq/tmc/cmd/syncer/options"
-	"github.com/faroshq/tmc/pkg/dns/plugin/nsmap"
-	"github.com/faroshq/tmc/third_party/coredns/coremain"
+	synceroptions "github.com/kcp-dev/contrib-tmc/cmd/syncer/options"
+	"github.com/kcp-dev/contrib-tmc/pkg/dns/plugin/nsmap"
+	"github.com/kcp-dev/contrib-tmc/third_party/coredns/coremain"
 )
 
 func NewDNSCommand() *cobra.Command {

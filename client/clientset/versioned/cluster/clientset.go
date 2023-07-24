@@ -32,14 +32,16 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/util/flowcontrol"
 
-	client "github.com/faroshq/tmc/client/clientset/versioned"
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
+	client "github.com/kcp-dev/contrib-tmc/client/clientset/versioned"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/apiresource/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/cluster/typed/workload/v1alpha1"
 )
 
 type ClusterInterface interface {
 	Cluster(logicalcluster.Path) client.Interface
 	Discovery() discovery.DiscoveryInterface
+	ApiresourceV1alpha1() apiresourcev1alpha1.ApiresourceV1alpha1ClusterInterface
 	SchedulingV1alpha1() schedulingv1alpha1.SchedulingV1alpha1ClusterInterface
 	WorkloadV1alpha1() workloadv1alpha1.WorkloadV1alpha1ClusterInterface
 }
@@ -47,9 +49,10 @@ type ClusterInterface interface {
 // ClusterClientset contains the clients for groups.
 type ClusterClientset struct {
 	*discovery.DiscoveryClient
-	clientCache        kcpclient.Cache[*client.Clientset]
-	schedulingV1alpha1 *schedulingv1alpha1.SchedulingV1alpha1ClusterClient
-	workloadV1alpha1   *workloadv1alpha1.WorkloadV1alpha1ClusterClient
+	clientCache         kcpclient.Cache[*client.Clientset]
+	apiresourceV1alpha1 *apiresourcev1alpha1.ApiresourceV1alpha1ClusterClient
+	schedulingV1alpha1  *schedulingv1alpha1.SchedulingV1alpha1ClusterClient
+	workloadV1alpha1    *workloadv1alpha1.WorkloadV1alpha1ClusterClient
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -58,6 +61,11 @@ func (c *ClusterClientset) Discovery() discovery.DiscoveryInterface {
 		return nil
 	}
 	return c.DiscoveryClient
+}
+
+// ApiresourceV1alpha1 retrieves the ApiresourceV1alpha1ClusterClient.
+func (c *ClusterClientset) ApiresourceV1alpha1() apiresourcev1alpha1.ApiresourceV1alpha1ClusterInterface {
+	return c.apiresourceV1alpha1
 }
 
 // SchedulingV1alpha1 retrieves the SchedulingV1alpha1ClusterClient.
@@ -122,6 +130,10 @@ func NewForConfigAndClient(c *rest.Config, httpClient *http.Client) (*ClusterCli
 	var cs ClusterClientset
 	cs.clientCache = cache
 	var err error
+	cs.apiresourceV1alpha1, err = apiresourcev1alpha1.NewForConfigAndClient(&configShallowCopy, httpClient)
+	if err != nil {
+		return nil, err
+	}
 	cs.schedulingV1alpha1, err = schedulingv1alpha1.NewForConfigAndClient(&configShallowCopy, httpClient)
 	if err != nil {
 		return nil, err

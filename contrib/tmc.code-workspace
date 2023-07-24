@@ -8,10 +8,10 @@
 			"name": "kcp",
 			"path": "../../kcp"
 		},
-                {
-                        "name": "tmc",
-                        "path": ".."
-                },
+        {
+        	"name": "tmc",
+            "path": ".."
+        },
 	],
 	"tasks": {
 		"version": "2.0.0",
@@ -33,6 +33,21 @@
 	"launch": {
 		"version": "0.2.0",
 		"configurations": [
+			{
+				"name": "Launch tmc",
+				"type": "go",
+				"request": "launch",
+				"mode": "debug",
+				"program": "${workspaceFolder:tmc}/cmd/tmc",
+				"env": {
+					"GOMOD": "${workspaceFolder:tmc}/go.mod",
+					"PATH": "${env:PATH}:/User/mjudeikis/go/bin"
+				},
+				"cwd": "${workspaceFolder:tmc}",
+				"args": [
+					"start"
+				]
+			},
 			{
 				"name": "Launch kcp",
 				"type": "go",

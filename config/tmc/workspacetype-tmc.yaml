@@ -1,0 +1,20 @@
+apiVersion: tenancy.kcp.io/v1alpha1
+kind: WorkspaceType
+metadata:
+  name: tmc
+spec:
+  extend:
+    with:
+    - name: universal
+      path: root
+  defaultAPIBindings:
+  - path: root:tmc
+    export: scheduling.kcp.io
+  - path: root:tmc
+    export: workload.kcp.io
+  - path: root:tmc
+    export: apiresource.kcp.io
+  defaultChildren:
+    types:
+    - name: tmc
+      path: root

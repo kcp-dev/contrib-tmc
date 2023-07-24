@@ -19,6 +19,8 @@ package synctargetexports
 import (
 	"context"
 
+	"github.com/kcp-dev/kcp/pkg/schemacompat"
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	apiextensionsv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
@@ -27,10 +29,8 @@ import (
 	"k8s.io/apimachinery/pkg/util/errors"
 	"k8s.io/apimachinery/pkg/util/validation/field"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	"github.com/kcp-dev/kcp/pkg/schemacompat"
-	apiresourcev1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apiresource/v1alpha1"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/apis/apiresource/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 // apiCompatibleReconciler sets state for each synced resource based on resource schema and apiimports.

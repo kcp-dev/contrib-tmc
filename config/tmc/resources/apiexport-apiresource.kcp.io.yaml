@@ -1,0 +1,10 @@
+apiVersion: apis.kcp.io/v1alpha1
+kind: APIExport
+metadata:
+  creationTimestamp: null
+  name: apiresource.kcp.io
+spec:
+  latestResourceSchemas:
+  - v230711-a961437.apiresourceimports.apiresource.kcp.io
+  - v230711-a961437.negotiatedapiresources.apiresource.kcp.io
+status: {}

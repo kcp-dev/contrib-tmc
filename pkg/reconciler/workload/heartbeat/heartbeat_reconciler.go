@@ -20,11 +20,12 @@ import (
 	"context"
 	"time"
 
-	"k8s.io/klog/v2"
-
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
 	conditionsv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/apis/conditions/v1alpha1"
 	"github.com/kcp-dev/kcp/sdk/apis/third_party/conditions/util/conditions"
+
+	"k8s.io/klog/v2"
+
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 func (c *Controller) reconcile(ctx context.Context, key string, cluster *workloadv1alpha1.SyncTarget) error {

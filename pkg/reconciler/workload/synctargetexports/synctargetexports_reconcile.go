@@ -20,14 +20,14 @@ import (
 	"context"
 	"sort"
 
+	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/util/errors"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
-	apisv1alpha1 "github.com/kcp-dev/kcp/sdk/apis/apis/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 // exportReconciler updates syncedResource in SyncTarget status based on supportedAPIExports.

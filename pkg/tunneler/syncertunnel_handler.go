@@ -25,7 +25,7 @@ import (
 	genericapirequest "k8s.io/apiserver/pkg/endpoints/request"
 	"k8s.io/klog/v2"
 
-	workloadv1alpha1 "github.com/faroshq/tmc/apis/workload/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 // WithSyncerTunnelHandler adds an HTTP Handler that handles reverse connections via the tunnel subresource:

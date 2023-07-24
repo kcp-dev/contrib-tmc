@@ -22,7 +22,7 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/faroshq/tmc/apis/workload/v1alpha1"
+	"github.com/kcp-dev/contrib-tmc/apis/workload/v1alpha1"
 )
 
 // SyncIntent gathers all the information related to the Syncing of

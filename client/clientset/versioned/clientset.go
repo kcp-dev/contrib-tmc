@@ -26,12 +26,14 @@ import (
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
 
-	schedulingv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
-	workloadv1alpha1 "github.com/faroshq/tmc/client/clientset/versioned/typed/workload/v1alpha1"
+	apiresourcev1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/apiresource/v1alpha1"
+	schedulingv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/scheduling/v1alpha1"
+	workloadv1alpha1 "github.com/kcp-dev/contrib-tmc/client/clientset/versioned/typed/workload/v1alpha1"
 )
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
+	ApiresourceV1alpha1() apiresourcev1alpha1.ApiresourceV1alpha1Interface
 	SchedulingV1alpha1() schedulingv1alpha1.SchedulingV1alpha1Interface
 	WorkloadV1alpha1() workloadv1alpha1.WorkloadV1alpha1Interface
 }
@@ -39,8 +41,14 @@ type Interface interface {
 // Clientset contains the clients for groups.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	schedulingV1alpha1 *schedulingv1alpha1.SchedulingV1alpha1Client
-	workloadV1alpha1   *workloadv1alpha1.WorkloadV1alpha1Client
+	apiresourceV1alpha1 *apiresourcev1alpha1.ApiresourceV1alpha1Client
+	schedulingV1alpha1  *schedulingv1alpha1.SchedulingV1alpha1Client
+	workloadV1alpha1    *workloadv1alpha1.WorkloadV1alpha1Client
+}
+
+// ApiresourceV1alpha1 retrieves the ApiresourceV1alpha1Client
+func (c *Clientset) ApiresourceV1alpha1() apiresourcev1alpha1.ApiresourceV1alpha1Interface {
+	return c.apiresourceV1alpha1
 }
 
 // SchedulingV1alpha1 retrieves the SchedulingV1alpha1Client
@@ -97,6 +105,10 @@ func NewForConfigAndClient(c *rest.Config, httpClient *http.Client) (*Clientset,
 
 	var cs Clientset
 	var err error
+	cs.apiresourceV1alpha1, err = apiresourcev1alpha1.NewForConfigAndClient(&configShallowCopy, httpClient)
+	if err != nil {
+		return nil, err
+	}
 	cs.schedulingV1alpha1, err = schedulingv1alpha1.NewForConfigAndClient(&configShallowCopy, httpClient)
 	if err != nil {
 		return nil, err
@@ -126,6 +138,7 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
+	cs.apiresourceV1alpha1 = apiresourcev1alpha1.New(c)
 	cs.schedulingV1alpha1 = schedulingv1alpha1.New(c)
 	cs.workloadV1alpha1 = workloadv1alpha1.New(c)
 

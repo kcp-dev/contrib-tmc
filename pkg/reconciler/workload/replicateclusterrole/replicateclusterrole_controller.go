@@ -19,13 +19,13 @@ package replicateclusterrole
 import (
 	kcprbacinformers "github.com/kcp-dev/client-go/informers/rbac/v1"
 	kcpkubernetesclientset "github.com/kcp-dev/client-go/kubernetes"
+	"github.com/kcp-dev/kcp/pkg/reconciler/cache/labelclusterroles"
 	"github.com/kcp-dev/logicalcluster/v3"
 
 	rbacv1 "k8s.io/api/rbac/v1"
 	"k8s.io/apimachinery/pkg/util/sets"
 
-	"github.com/faroshq/tmc/apis/workload"
-	"github.com/kcp-dev/kcp/pkg/reconciler/cache/labelclusterroles"
+	"github.com/kcp-dev/contrib-tmc/apis/workload"
 )
 
 const (
