@@ -29,7 +29,7 @@ import (
 )
 
 const (
-	ControllerName = "kcp-workloads-replicate-clusterrole"
+	ControllerName = "tmc-workloads-replicate-clusterrole"
 )
 
 // NewController returns a new controller for labelling ClusterRole that should be replicated.
