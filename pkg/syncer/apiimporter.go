@@ -92,7 +92,7 @@ func NewAPIImporter(
 		return nil, err
 	}
 
-	tmcClusterClient, err := tmcclusterclientset.NewForConfig(downstreamConfig)
+	tmcClusterClient, err := tmcclusterclientset.NewForConfig(upstreamConfig)
 	if err != nil {
 		return nil, err
 	}
