@@ -21,7 +21,7 @@ jobs:
           check-latest: true
       - uses: imjasonh/setup-ko@v0.6
         env:
-          KO_DOCKER_REPO: ghcr.io/${{ github.repository_owner }}/
+          KO_DOCKER_REPO: ghcr.io/${{ github.repository }}/
       - env:
           auth_token: ${{ secrets.auth_token }}
         run: |
