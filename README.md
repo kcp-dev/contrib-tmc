@@ -50,6 +50,7 @@ TMC is a multi-cluster management platform that allows you to manage multiple Ku
 
 - [ ] TMC currently does not support sharding
 - [ ] Placements do not work cross-workspaces https://github.com/kcp-dev/contrib-tmc/issues/4
+- [ ] Tunneling does not work as of now
 
 ## Background
 
