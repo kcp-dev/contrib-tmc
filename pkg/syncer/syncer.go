@@ -101,6 +101,7 @@ func StartSyncer(ctx context.Context, cfg *SyncerConfig, numSyncerThreads int, i
 	if err != nil {
 		return err
 	}
+
 	tmcBootstrapClusterClient, err := tmcclusterclientset.NewForConfig(bootstrapConfig)
 	if err != nil {
 		return err
