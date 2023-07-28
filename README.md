@@ -31,7 +31,7 @@ TMC is a multi-cluster management platform that allows you to manage multiple Ku
 
 # Create SyncTarget for remote cluster
 
-  kubectl tmc workload sync cluster-1 --syncer-image ghcr.io/kcp-dev/contrib-tmc/syncer:main --output-file cluster-1.yaml
+  kubectl tmc workload sync cluster-1 --syncer-image ghcr.io/kcp-dev/contrib-tmc/syncer:latest --output-file cluster-1.yaml
 
 # Login into child cluster
 
