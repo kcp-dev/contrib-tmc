@@ -45,7 +45,7 @@ import (
 )
 
 const (
-	ControllerName = "kcp-workload-default-location"
+	ControllerName = "tmc-workload-default-location"
 
 	DefaultLocationName = "default"
 )

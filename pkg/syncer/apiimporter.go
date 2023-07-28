@@ -83,7 +83,7 @@ func NewAPIImporter(
 	syncTargetName string,
 	syncTargetUID types.UID,
 ) (*APIImporter, error) {
-	agent := fmt.Sprintf("kcp-workload-api-importer-%s-%s", syncTargetPath, syncTargetName)
+	agent := fmt.Sprintf("tmc-workload-api-importer-%s-%s", syncTargetPath, syncTargetName)
 	upstreamConfig = rest.AddUserAgent(rest.CopyConfig(upstreamConfig), agent)
 	downstreamConfig = rest.AddUserAgent(rest.CopyConfig(downstreamConfig), agent)
 

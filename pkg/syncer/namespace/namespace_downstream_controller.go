@@ -48,7 +48,7 @@ import (
 )
 
 const (
-	controllerNameRoot       = "kcp-workload-syncer-namespace"
+	controllerNameRoot       = "tmc-workload-syncer-namespace"
 	downstreamControllerName = controllerNameRoot + "-downstream"
 )
 

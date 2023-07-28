@@ -37,7 +37,7 @@ import (
 )
 
 const (
-	ControllerName = "kcp-workload-replicate-logicalcluster"
+	ControllerName = "tmc-workload-replicate-logicalcluster"
 )
 
 // NewController returns a new controller for labelling LogicalClusters that should be replicated.

@@ -45,7 +45,7 @@ import (
 )
 
 const (
-	ControllerName = "kcp-workload-apiexport"
+	ControllerName = "tmc-workload-apiexport"
 )
 
 // NewController returns a new controller instance.

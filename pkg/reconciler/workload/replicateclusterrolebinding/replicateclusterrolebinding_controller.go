@@ -29,7 +29,7 @@ import (
 )
 
 const (
-	ControllerName = "kcp-workloads-replicate-clusterrolebinding"
+	ControllerName = "tmc-workloads-replicate-clusterrolebinding"
 )
 
 // NewController returns a new controller for labelling ClusterRoleBinding that should be replicated.

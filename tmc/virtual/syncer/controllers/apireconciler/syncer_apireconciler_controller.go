@@ -48,7 +48,7 @@ import (
 )
 
 const (
-	ControllerName                     = "kcp-virtual-syncer-api-reconciler-"
+	ControllerName                     = "tmc-virtual-syncer-api-reconciler-"
 	IndexSyncTargetsByExport           = ControllerName + "ByExport"
 	IndexAPIExportsByAPIResourceSchema = ControllerName + "ByAPIResourceSchema"
 )
