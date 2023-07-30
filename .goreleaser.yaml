@@ -16,9 +16,9 @@ builds:
     goarch: ppc64le
   env:
   - CGO_ENABLED=0
-- id: "kubectl-workspace"
-  main: ./cmd/kubectl-workspace
-  binary: bin/kubectl-workspace
+- id: "kubectl-workload"
+  main: ./cmd/kubectl-workload
+  binary: bin/kubectl-workload
   ldflags:
   - "{{ .Env.LDFLAGS }}"
   goos:
@@ -36,8 +36,7 @@ builds:
     goarch: ppc64le
   hooks:
     post:
-      - ln -sfr bin/kubectl-workspace bin/kubectl-workspaces
-      - ln -sfr bin/kubectl-workspace bin/kubectl-ws
+      - ln -sfr bin/kubectl-workload bin/kubectl-workloads
   env:
   - CGO_ENABLED=0
 archives:
@@ -47,11 +46,10 @@ archives:
 - id: kubectl-tmc-plugin
   builds:
   - kubectl-tmc
-  - kubectl-workspace
+  - kubectl-workload
   name_template: "kubectl-tmc-plugin_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
   files:
-    - bin/kubectl-workspaces
-    - bin/kubectl-ws
+    - bin/kubectl-workloads
 release:
   draft: true
   prerelease: auto
