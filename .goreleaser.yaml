@@ -12,6 +12,19 @@ builds:
   - arm64
   env:
   - CGO_ENABLED=0
+- id: "kubectl-tmc"
+  main: ./cmd/kubectl-tmc
+  binary: bin/kubectl-tmc
+  ldflags:
+  - "{{ .Env.LDFLAGS }}"
+  goos:
+  - linux
+  - darwin
+  goarch:
+  - amd64
+  - arm64
+  env:
+  - CGO_ENABLED=0
 - id: "kubectl-workload"
   main: ./cmd/kubectl-workload
   binary: bin/kubectl-workload
@@ -28,14 +41,13 @@ builds:
 archives:
 - id: tmc
   builds:
-  - tmc
+  - kubectl-tmc
+  - kubectl-workload
 - id: kubectl-tmc-plugin
   builds:
   - kubectl-tmc
   - kubectl-workload
   name_template: "kubectl-tmc-plugin_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-  files:
-    - bin/kubectl-workloads
 release:
   draft: true
   prerelease: auto
