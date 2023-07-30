@@ -6,3 +6,4 @@ hack/tools/*
 *.kubeconfig
 go.work
 go.work.sum
+dist/**
