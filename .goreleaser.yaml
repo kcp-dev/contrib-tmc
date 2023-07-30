@@ -10,10 +10,6 @@ builds:
   goarch:
   - amd64
   - arm64
-  - ppc64le
-  ignore:
-  - goos: darwin
-    goarch: ppc64le
   env:
   - CGO_ENABLED=0
 - id: "kubectl-workload"
@@ -24,16 +20,9 @@ builds:
   goos:
   - linux
   - darwin
-  - windows
   goarch:
   - amd64
   - arm64
-  - ppc64le
-  ignore:
-  - goos: darwin
-    goarch: ppc64le
-  - goos: windows
-    goarch: ppc64le
   hooks:
     post:
       - ln -sfr bin/kubectl-workload bin/kubectl-workloads
