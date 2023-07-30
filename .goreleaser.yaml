@@ -23,9 +23,6 @@ builds:
   goarch:
   - amd64
   - arm64
-  hooks:
-    post:
-      - ln -sfr bin/kubectl-workload bin/kubectl-workloads
   env:
   - CGO_ENABLED=0
 archives:
