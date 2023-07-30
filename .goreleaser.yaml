@@ -41,14 +41,14 @@ builds:
   env:
   - CGO_ENABLED=0
 archives:
-- id: kcp
+- id: tmc
   builds:
-  - kcp
-- id: kubectl-kcp-plugin
+  - tmc
+- id: kubectl-tmc-plugin
   builds:
-  - kubectl-kcp
+  - kubectl-tmc
   - kubectl-workspace
-  name_template: "kubectl-kcp-plugin_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+  name_template: "kubectl-tmc-plugin_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
   files:
     - bin/kubectl-workspaces
     - bin/kubectl-ws
