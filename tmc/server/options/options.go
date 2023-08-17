@@ -21,6 +21,7 @@ import (
 
 	cliflag "k8s.io/component-base/cli/flag"
 
+	tmcadmission "github.com/kcp-dev/contrib-tmc/pkg/admission"
 	tmcvirtualoptions "github.com/kcp-dev/contrib-tmc/tmc/virtual/options"
 )
 
@@ -56,6 +57,10 @@ func NewOptions(rootDir string) *Options {
 
 		Extra: ExtraOptions{},
 	}
+	// add TMC admission plugins
+	tmcadmission.RegisterAllTMCAdmissionPlugins(o.Core.GenericControlPlane.Admission.Plugins)
+	orderedPlugins := tmcadmission.AddTMCOrderedPlugins(o.Core.GenericControlPlane.Admission.RecommendedPluginOrder)
+	o.Core.GenericControlPlane.Admission.RecommendedPluginOrder = orderedPlugins
 
 	return o
 }

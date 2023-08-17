@@ -40,14 +40,11 @@ type placementReconciler struct {
 func (r *placementReconciler) reconcile(ctx context.Context, placement *schedulingv1alpha1.Placement) (reconcileStatus, *schedulingv1alpha1.Placement, error) {
 	// get location workspace at first
 	var locationWorkspace logicalcluster.Path
-	// https://github.com/kcp-dev/contrib-tmc/issues/4
-	// TODO(MJ): currently this disables the cross workspace placements. This is due to
-	// fact indexers are build ontop of logicalcluster paths and we use here the 'readable' paths
-	// if len(placement.Spec.LocationWorkspace) > 0 {
-	//	locationWorkspace = logicalcluster.NewPath(placement.Spec.LocationWorkspace)
-	// } else {
-	locationWorkspace = logicalcluster.From(placement).Path()
-	// }
+	if len(placement.Spec.LocationWorkspace) > 0 {
+		locationWorkspace = logicalcluster.NewPath(placement.Spec.LocationWorkspace)
+	} else {
+		locationWorkspace = logicalcluster.From(placement).Path()
+	}
 
 	locationWorkspace, validLocationNames, err := r.validLocationNames(placement, locationWorkspace)
 	if err != nil {
